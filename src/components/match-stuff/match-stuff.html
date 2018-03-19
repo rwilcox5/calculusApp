@@ -1,0 +1,45 @@
+<!-- Generated template for the MatchStuffComponent component -->
+<ion-grid>
+  <ion-row>
+  	<ion-col>
+      <button (click)="cellClick(0,0);" [style.background-color]='cellBG[0][0]' class="matchButton"><ng-katex [equation]='cellValue[0][0]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(0,1);" [style.background-color]='cellBG[0][1]' class="matchButton"><ng-katex [equation]='cellValue[0][1]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(0,2);" [style.background-color]='cellBG[0][2]' class="matchButton"><ng-katex [equation]='cellValue[0][2]'></ng-katex></button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button (click)="cellClick(1,0);" [style.background-color]='cellBG[1][0]' class="matchButton"><ng-katex [equation]='cellValue[1][0]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(1,1);" [style.background-color]='cellBG[1][1]' class="matchButton"><ng-katex [equation]='cellValue[1][1]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(1,2);" [style.background-color]='cellBG[1][2]' class="matchButton"><ng-katex [equation]='cellValue[1][2]'></ng-katex></button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button (click)="cellClick(2,0);" [style.background-color]='cellBG[2][0]' class="matchButton"><ng-katex [equation]='cellValue[2][0]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(2,1);" [style.background-color]='cellBG[2][1]' class="matchButton"><ng-katex [equation]='cellValue[2][1]'></ng-katex></button>
+    </ion-col>
+    <ion-col>
+      <button (click)="cellClick(2,2);" [style.background-color]='cellBG[2][2]' class="matchButton"><ng-katex [equation]='cellValue[2][2]'></ng-katex></button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <progress-bar [bWidth]='bWidth'></progress-bar>
+  </ion-row>
+  <ion-row>
+    <button ion-button [navPush]="catName">Back to Trig</button>
+  </ion-row>
+</ion-grid> 

@@ -1,0 +1,81 @@
+<!-- Generated template for the MasterMindComponent component -->
+<ion-grid>
+	<ion-row>
+      	<ion-col ion-item *ngFor="let item of keyValues" [style.background]='item.color[0]' [style.color]='item.color[1]'>
+          {{item.text}}
+      	</ion-col>
+
+	</ion-row>
+	
+	<ion-row class="buffer">
+	</ion-row>
+
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of A1" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button style='width:100%; height:50px;' (click)='onClick(item);'>{{ cell[item][0] }}</button>
+      	</ion-col>
+      	<ion-col>
+      		<ion-icon name='star' [style.color]="pegA[0]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegA[1]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegA[2]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegA[3]"></ion-icon>
+      	</ion-col>
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of B1" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button style='width:100%; height:50px;' (click)='onClick(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+      	<ion-col>
+      		<ion-icon name='star' [style.color]="pegB[0]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegB[1]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegB[2]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegB[3]"></ion-icon>
+      	</ion-col>
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of C1" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button style='width:100%; height:50px;' (click)='onClick(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+      	<ion-col>
+      		<ion-icon name='star' [style.color]="pegC[0]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegC[1]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegC[2]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegC[3]"></ion-icon>
+      	</ion-col>
+
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of D1" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button style='width:100%; height:50px;' (click)='onClick(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+      	<ion-col>
+      		<ion-icon name='star' [style.color]="pegD[0]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegD[1]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegD[2]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegD[3]"></ion-icon>
+      	</ion-col>
+
+	</ion-row>
+	<ion-row nowrap>
+  		  <ion-col ion-item *ngFor="let item of E1" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button style='width:100%; height:50px;' (click)='onClick(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+      	<ion-col>
+      		<ion-icon name='star' [style.color]="pegE[0]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegE[1]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegE[2]"></ion-icon>
+      		<ion-icon name='star' [style.color]="pegE[3]"></ion-icon>
+      	</ion-col>
+
+	</ion-row>
+
+	<ion-row class="buffer">
+	</ion-row>
+
+	<ion-row>
+      	<ion-col ion-item *ngFor="let item of q1">
+          <button style='width:100%; height:50px;' (click)='onChoose(item.id);'>{{item.text}}</button>
+      	</ion-col>
+	</ion-row>
+
+</ion-grid>

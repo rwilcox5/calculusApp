@@ -1,0 +1,48 @@
+<!-- Generated template for the DoubleSudokuComponent component -->
+<ion-grid>
+
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of sudokuRow[0]" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button class='cellButton' (click)='onCell(item);'>{{ cell[item][0] }}</button>
+      	</ion-col>
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of sudokuRow[1]" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button class='cellButton' (click)='onCell(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of sudokuRow[2]" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button class='cellButton' (click)='onCell(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+	</ion-row>
+	<ion-row nowrap>
+      	<ion-col ion-item *ngFor="let item of sudokuRow[3]" [style.background]='cell[item][1]' [style.color]='cell[item][2]'>
+          <button class='cellButton' (click)='onCell(item);'>{{ cell[item][0] }}</button>
+        </ion-col>
+	</ion-row>
+
+	<ion-row class="buffer">
+	</ion-row>
+
+	<ion-row>
+      	<ion-col ion-item *ngFor="let item of inputRow[0]" [style.background-image]= 'bgArray[item]' style='background-size: 100% 100%; opacity: .9;'>
+	      	<button style='width:100%; height:50px; font-weight: bold; background-color: rgba(0,0,0,0); color: "white"; font-size: 20pt; text-shadow: 3px 0 0 #fff, -3px 0 0 #fff, 0 3px 0 #fff, 0 -3px 0 #fff, 2px 2px #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;' (click)='onText(item);'>{{ textArray[item] }}</button>
+          
+        </ion-col>
+	</ion-row>
+	<ion-row>
+      	<ion-col ion-item *ngFor="let item of inputRow[1]" [style.background]='colorArray[item]'>
+          <button style='width:100%; height:50px; background-color: rgba(0, 0, 0, 0);' (click)='onColor(item);'></button>
+        </ion-col>
+	</ion-row>
+	<ion-row>
+      	<ion-col>
+          <button style='width:100%; height:50px; background-color: rgba(0, 0, 0, 0); font-size: 12pt;' (click)='onChg("text");'>Chg #</button>
+        </ion-col>
+        <ion-col>
+          <button style='width:100%; height:50px; background-color: rgba(0, 0, 0, 0); font-size: 12pt;' (click)='onChg("color");'>Chg Color</button>
+        </ion-col>
+	</ion-row>
+
+</ion-grid>

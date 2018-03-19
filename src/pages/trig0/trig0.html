@@ -1,0 +1,56 @@
+<!--
+  Generated template for the Trig0Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Learn Trigonometry!</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-grid>
+	  <ion-row>
+	    <ion-col>
+	      <button ion-button [navPush]="trig1">Zero Values</button>
+	      <br />
+	      <progress-bar [bWidth]='levelPoints.trig1'></progress-bar>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig2">Order Angles</button>
+	      <br />
+	      <progress-bar [bWidth]='levelPoints.trig2'></progress-bar>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig4">Order Values</button>
+	      <br />
+	      <progress-bar [bWidth]='levelPoints.trig4'></progress-bar>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig3">Match Values</button>
+	      <br />
+	      <progress-bar [bWidth]='levelPoints.trig3'></progress-bar>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig5">Match Values</button>
+	      
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig6">Mastermind</button>
+	      
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button [navPush]="trig7">Sudoku</button>
+	      
+	    </ion-col>
+	  </ion-row>
+	</ion-grid>
+	
+	
+</ion-content>

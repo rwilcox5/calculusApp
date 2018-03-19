@@ -1,0 +1,20 @@
+<!-- Generated template for the MultiChoiceComponent component -->
+<ion-grid>
+	  <ion-row>
+	    <h2><ng-katex [equation]="question"></ng-katex></h2>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col>
+	      <button ion-button (click)="newRandom(0);"><ng-katex [equation]="answer0"></ng-katex></button>
+	    </ion-col>
+	    <ion-col>
+	      <button ion-button (click)="newRandom(1);"><ng-katex [equation]="answer1"></ng-katex></button>
+	    </ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <progress-bar [bWidth]='bWidth'></progress-bar>
+	  </ion-row>
+	  <ion-row>
+	    <button ion-button [navPush]="catName">Back to Trig</button>
+	  </ion-row>
+</ion-grid> 
