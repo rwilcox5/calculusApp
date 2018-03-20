@@ -21,6 +21,7 @@ export class OrderStuffComponent {
 	items = [];
 	nCorrect = 0;
 	bWidth: string;
+  equation: string = "\\sum_{i=1}^nx_i";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
 
