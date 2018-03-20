@@ -2,10 +2,8 @@
 <ion-list>
   <ion-list-header>Order the Angles from smallest to largest.</ion-list-header>
   <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-    <ion-item *ngFor="let item of items"></ion-item>
+    <ion-item *ngFor="let item of items">$\${{ item }}$\$</ion-item>
   </ion-item-group>
 </ion-list>
-<div id='MathExample'>$\$x^3$\$</div>
 <progress-bar [bWidth]='bWidth'></progress-bar>
 <button ion-button [navPush]="catName">Back to Trig</button>
-

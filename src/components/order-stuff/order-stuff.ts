@@ -40,12 +40,13 @@ export class OrderStuffComponent {
 
 	  });
     this.mixEmUp();
+    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 
     
   }
 
   ngOnChanges() {
-    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub,"MathExample"])');
+    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
   }
 
   mixEmUp(){
