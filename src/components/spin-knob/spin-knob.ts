@@ -23,11 +23,13 @@ export class SpinKnobComponent {
   rotRadians: string = 'rotate(0rad)';
   finRadians: number = 0;
   kWidth: string = "400";
+  sideLen: number = 400;
 
   constructor() {
     console.log('Hello SpinKnobComponent Component');
     this.angle = [0,1];
     this.kWidth = '200';
+    this.sideLen = 200;
 
   }
 
@@ -71,8 +73,8 @@ export class SpinKnobComponent {
     let tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || event.touches[0].offsetX || event.touches[0].clientX -Math.floor(picLeft) || event.touches[0].pageX -Math.floor(picLeft) || event.touches[0].screenX -Math.floor(picLeft) || 0;
     let ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || event.touches[0].offsetY || event.touches[0].clientY -Math.floor(picTop) || event.touches[0].pageY -Math.floor(picTop) || event.touches[0].screenY -Math.floor(picTop) || 0;
 
-    this.rotRadians = 'rotate(-'+this.getAngleRad(tx-200,-1*ty+200).toString()+'rad)';  
-    this.finRadians = this.finalAngle(this.getAngleRad(tx-200,-1*ty+200)*180/Math.PI);
+    this.rotRadians = 'rotate(-'+this.getAngleRad(tx-this.sideLen/2,-1*ty+this.sideLen/2).toString()+'rad)';  
+    this.finRadians = this.finalAngle(this.getAngleRad(tx-this.sideLen/2,-1*ty+this.sideLen/2)*180/Math.PI);
 
   }
 
