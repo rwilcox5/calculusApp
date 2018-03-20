@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { KatexModule } from 'ng-katex';
 import { DragulaModule } from 'ng2-dragula';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -54,7 +55,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     KatexModule,
-    DragulaModule
+    DragulaModule,
+    AngularDraggableModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

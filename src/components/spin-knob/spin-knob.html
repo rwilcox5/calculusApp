@@ -1,5 +1,8 @@
 <!-- Generated template for the SpinKnobComponent component -->
-<img id="knob" src="assets/imgs/knob.png" width="400" height="400"/>
+
+<div ngDraggable [ngDraggable]='false' style="background:black; width: 400px; height: 30px; position: absolute; left: 0px; top: 185px;" [style.transform]='rotRadians'></div>
+<div (mousemove)='getKnob($event)' style="background:rgba(0,0,0,.2); width: 400px; height: 400px; position: absolute; left: 20px; top: 20px;" [style.transform]='finRadians'></div>
+<img src="assets/imgs/knob.png" width="400" height="400"/>
 <div>Spin to {{ cAngle[0] }}pi/{{ cAngle[1] }}</div>
 <div id="knobInfo">{{ angle[0] }}pi/{{ angle[1] }}</div>
 <progress-bar [bWidth]='bWidth'></progress-bar>
