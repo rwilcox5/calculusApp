@@ -40,7 +40,7 @@ export class OrderStuffComponent {
 
 	  });
     this.mixEmUp();
-    this.maxLine = (this.platform.height()/(this.orderedItems.length()+3)).toString()+'px';
+    this.maxLine = (this.platform.height()/(this.orderedItems.length+3)).toString()+'px';
     eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 
 
