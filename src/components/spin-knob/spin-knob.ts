@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { AngularDraggableModule } from 'angular2-draggable';
+
 /**
  * Generated class for the SpinKnobComponent component.
  *
