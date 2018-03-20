@@ -27,6 +27,7 @@ export class SpinKnobComponent {
   constructor() {
     console.log('Hello SpinKnobComponent Component');
     this.angle = [0,1];
+    this.kWidth = '200';
 
   }
 
