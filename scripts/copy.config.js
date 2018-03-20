@@ -22,5 +22,9 @@ module.exports = {
   copyKatex: {
     src: ['{{ROOT}}/node_modules/katex/**/*'],
     dest: '{{WWW}}/assets/third-party/katex'
+  },
+  copyKatexA: {
+    src: ['{{ROOT}}/node_modules/katex/**/*'],
+    dest: '{{ROOT}}/platforms/android/app/src/main/assets/www/assets/third-party/katex'
   }
 }
