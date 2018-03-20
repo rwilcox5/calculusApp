@@ -26,6 +26,14 @@
         .catch(err => console.error('Error', err));
     }
   </script>-->
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
   <link href="build/main.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/katex.min.css">
@@ -39,6 +47,7 @@
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
+  $$x^2$$
 
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>

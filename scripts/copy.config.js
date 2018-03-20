@@ -19,12 +19,12 @@ module.exports = {
     src: ['{{ROOT}}/node_modules/sw-toolbox/sw-toolbox.js'],
     dest: '{{BUILD}}'
   },
-  copyKatex: {
-    src: ['{{ROOT}}/node_modules/katex/**/*'],
-    dest: '{{WWW}}/assets/third-party/katex'
+  copyMathJax: {
+    src: ['{{ROOT}}/node_modules/mathjax/**/*'],
+    dest: '{{WWW}}/assets/third-party/mathjax'
   },
-  copyKatexA: {
-    src: ['{{ROOT}}/node_modules/katex/**/*'],
-    dest: '{{ROOT}}/platforms/android/app/src/main/assets/www/assets/third-party/katex'
+  copyMathJaxA: {
+    src: ['{{ROOT}}/node_modules/mathjax/**/*'],
+    dest: '{{ROOT}}/platforms/android/app/src/main/assets/www/assets/third-party/mathjax'
   }
 }
