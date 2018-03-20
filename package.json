@@ -65,8 +65,5 @@
     "platforms": [
       "android"
     ]
-  },
-  "config": {
-    "ionic_copy": "./scripts/copy.config.js"
   }
 }
