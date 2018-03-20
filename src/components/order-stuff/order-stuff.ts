@@ -1,5 +1,5 @@
 import { Component,Input} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Trig0Page } from '../../pages/trig0/trig0';
 
@@ -22,12 +22,12 @@ export class OrderStuffComponent {
 	items = [];
 	nCorrect = 0;
 	bWidth: string;
-  activeFormulae: string = 'x^3';
+  maxLine: string = '20px';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private platform: Platform) {
 
-  	
+  	this.maxLine = (this.platform.height()/8).toString()+'px';
   	
   }
 
@@ -40,7 +40,9 @@ export class OrderStuffComponent {
 
 	  });
     this.mixEmUp();
+    this.maxLine = (this.platform.height()/(this.orderedItems.length()+3)).toString()+'px';
     eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
+
 
     
   }
