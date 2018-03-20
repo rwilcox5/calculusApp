@@ -1,7 +1,8 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Trig0Page } from '../../pages/trig0/trig0';
+import * as katex from "katex";
 /**
  * Generated class for the OrderStuffComponent component.
  *
@@ -17,11 +18,12 @@ export class OrderStuffComponent {
   
   	@Input() private orderedItems: string[] = [];
   	@Input() private pointsHere: string = '';
+    @ViewChild('katexSpot') katexSpot;
 	catName = Trig0Page;
 	items = [];
 	nCorrect = 0;
 	bWidth: string;
-  activeFormulae: string = 'x^2';
+  activeFormulae: string = 'x^3';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
@@ -30,6 +32,8 @@ export class OrderStuffComponent {
   	
   }
 
+
+
   ngOnInit() {
     this.storage.get(this.pointsHere).then((val) => {
 	    this.nCorrect = val;
@@ -37,7 +41,19 @@ export class OrderStuffComponent {
 
 	  });
     this.mixEmUp();
+
+    let el = this.katexSpot;
+    katex.render('x^4', el.nativeElement, {
+      displayMode: true
+    });
     
+  }
+
+  ngOnChanges() {
+    let el = this.katexSpot;
+    katex.render('x^4', el.nativeElement, {
+      displayMode: true
+    });
   }
 
   mixEmUp(){

@@ -2,9 +2,10 @@
 <ion-list>
   <ion-list-header>Order the Angles from smallest to largest.</ion-list-header>
   <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-    <ion-item *ngFor="let item of items"><div [Katex]="activeFormulae">{{activeFormulae}}</div></ion-item>
+    <ion-item *ngFor="let item of items"></ion-item>
   </ion-item-group>
 </ion-list>
+<div id='katexSpot' #katexSpot></div>
 <progress-bar [bWidth]='bWidth'></progress-bar>
 <button ion-button [navPush]="catName">Back to Trig</button>
 
