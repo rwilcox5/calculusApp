@@ -21,7 +21,8 @@ export class SpinKnobComponent {
   allDenoms: number[] = [1,2,3,4,6];
   allNumers: any[] = [[],[0,1],[1,3],[1,2,4,5],[1,3,5,7],[],[1,5,7,11]];
   rotRadians: string = 'rotate(0rad)';
-  finRadians: string = 'rotate(0rad)';
+  finRadians: number = 0;
+  kWidth: string = "400";
 
   constructor() {
     console.log('Hello SpinKnobComponent Component');
@@ -49,18 +50,33 @@ export class SpinKnobComponent {
 
   	}
   }
-
+  getAngleRad(x,y){
+    if (x<0 && y<0){
+      return Math.atan(y/x)+Math.PI;
+    }
+    else if (x>=0 && y<0){
+      return Math.atan(y/x)+2*Math.PI;
+    }
+    else if (x>=0 && y>=0){
+      return Math.atan(y/x);
+    }
+    else if (x<0 && y>=0){
+      return Math.atan(y/x)+Math.PI;
+    }
+  }
   getKnob(event){
     let picLeft = 0;
     let picTop = 0;
     let tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || event.touches[0].offsetX || event.touches[0].clientX -Math.floor(picLeft) || event.touches[0].pageX -Math.floor(picLeft) || event.touches[0].screenX -Math.floor(picLeft) || 0;
     let ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || event.touches[0].offsetY || event.touches[0].clientY -Math.floor(picTop) || event.touches[0].pageY -Math.floor(picTop) || event.touches[0].screenY -Math.floor(picTop) || 0;
 
-    this.rotRadians = 'rotate('+Math.atan(1*(ty-200)/(tx-200)).toString()+'rad)';    
+    this.rotRadians = 'rotate(-'+this.getAngleRad(tx-200,-1*ty+200).toString()+'rad)';  
+    this.finRadians = this.finalAngle(this.getAngleRad(tx-200,-1*ty+200)*180/Math.PI);
+
   }
 
 
-  createKnob(endValue){
+  finalAngle(endValue){
 
       //this function gets called when the mouse/finger is released and it plots where rotation should normally end and we can alter that value and return a new one instead. This gives us an easy way to apply custom snapping behavior with any logic we want. In this case, just make sure the end value snaps to 90-degree increments but only when the "snap" checkbox is selected.
       let angleNum = Math.round(endValue/15)*-1;
