@@ -21,6 +21,7 @@ export class OrderStuffComponent {
 	items = [];
 	nCorrect = 0;
 	bWidth: string;
+  activeFormulae: string = 'x^2';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {

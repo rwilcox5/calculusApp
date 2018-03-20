@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { KatexModule } from 'ng-katex';
+import { KatexDirective } from '../directives/katex/katex';
 
 
 
@@ -48,7 +49,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SpinKnobComponent,
     MasterMindComponent,
     DoubleSudokuComponent,
-    ListPage
+    ListPage,
+    KatexDirective
   ],
   imports: [
     BrowserModule,
