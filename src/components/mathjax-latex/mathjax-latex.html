@@ -1,1 +1,3 @@
-<span [id]='mlid'>\${{ equation }}\$</span>
+<span [id]='mlid+"i"' *ngIf='inline'>\${{ equation }}\$</span>
+<span [id]='mlid+"d"' *ngIf='!inline'>\$\${{ equation }}\$\$</span>
+

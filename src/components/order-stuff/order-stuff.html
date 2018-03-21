@@ -2,7 +2,7 @@
 <ion-list>
   <ion-list-header no-lines>Order the Angles from smallest to largest.</ion-list-header>
   <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
-    <ion-item *ngFor="let item of items" [style.maxHeight]="maxLine">$\${{ item }}$\$</ion-item>
+    <ion-item *ngFor="let item of items" [style.maxHeight]="maxLine"><mathjax-latex [equation]='item'></mathjax-latex></ion-item>
   </ion-item-group>
 </ion-list>
 <progress-bar [bWidth]='bWidth'></progress-bar>

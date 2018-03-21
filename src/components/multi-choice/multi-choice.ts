@@ -45,7 +45,6 @@ export class MultiChoiceComponent {
 
 	ngOnInit() {
 		this.questions = ['\\text{What is }'+this.q1.split('@').join('\\')+'\\text{?}','\\text{What is }'+this.q2.split('@').join('\\')+'\\text{?}'];
-		eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 		this.storage.get(this.pointsHere).then((val) => {
 		    this.nCorrect = val;
 		    this.bWidth = (this.nCorrect*10).toString()+'px';
@@ -55,7 +54,7 @@ export class MultiChoiceComponent {
 			
 			
 	  	});
-	  	eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
+
 		
 	}
 

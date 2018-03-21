@@ -2,14 +2,14 @@
 <ion-grid>
 	  <ion-row *ngFor='let question of questions; let i = index'>
 	  	<ion-col>
-	    	<div [style.visibility]='qDisp[i]' [class]='qClass[i]'><h2>$\${{ question }}$\$</h2></div>
+	    	<div [style.visibility]='qDisp[i]' [class]='qClass[i]'><h2><mathjax-latex [equation]='question'></mathjax-latex></h2></div>
 		</ion-col>
 		<ion-col>
 		</ion-col>
 	  </ion-row>
 	  <ion-row>
 	    <ion-col *ngFor='let answer of answers; let i = index'>
-	      <button ion-button (click)="newRandom(i);">$\${{ answer }}$\$</button>
+	      <button ion-button (click)="newRandom(i);"><mathjax-latex [equation]='answer'></mathjax-latex></button>
 	    </ion-col>
 	  </ion-row>
 	  <ion-row>
