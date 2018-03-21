@@ -34,12 +34,19 @@ export class MatchStuffComponent {
   }
 
   ngAfterViewInit(){
+  	this.matchArray = this.matchArrayArray[0];
+  	this.createMatching();
   	this.storage.get(this.pointsHere).then((val) => {
 	    this.nCorrect = val;
 	    this.bWidth = (this.nCorrect*10).toString()+'px'; 
+	    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 	  });
-  	this.matchArray = this.matchArrayArray[0];
-  	this.createMatching();
+  	
+  	
+  }
+
+  ngOnChanges() {
+    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
   }
 
   cellClick(rowID,colID){
@@ -56,6 +63,7 @@ export class MatchStuffComponent {
 
 					this.createMArray();
 					this.createMatching();
+					this.ngOnChanges();
 				}
 			}
 			else{

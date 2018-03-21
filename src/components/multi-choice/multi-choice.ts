@@ -15,13 +15,15 @@ import { Trig0Page } from '../../pages/trig0/trig0';
 })
 export class MultiChoiceComponent {
 	catName = Trig0Page;
-	question = '';
+	questions = [];
 
 	private nCorrect: number;
 	private randomQ: string;
 	private cAnswer: number;
 	private answer0: string;
 	private answer1: string;
+	private answers: string[] = ['',''];
+	qDisp = ['visible','visible'];
 
 	@Input() private q1: string = '';
 	@Input() private q2: string = '';
@@ -41,7 +43,8 @@ export class MultiChoiceComponent {
 	}
 
 	ngOnInit() {
-
+		this.questions = ['\\text{What is }'+this.q1.split('@').join('\\')+'\\text{?}','\\text{What is }'+this.q2.split('@').join('\\')+'\\text{?}'];
+		eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 		this.storage.get(this.pointsHere).then((val) => {
 		    this.nCorrect = val;
 		    this.bWidth = (this.nCorrect*10).toString()+'px';
@@ -49,12 +52,19 @@ export class MultiChoiceComponent {
 			this.randomQ = '';
 			this.newRandom();		
 			
+			
 	  	});
+	  	eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 		
 	}
 
+	ngOnChanges() {
+
+	  }
+
 
 	newRandom(answer=-1){
+		console.log(answer);
 
 		if (this.randomQ !=''){
 			if (answer==this.cAnswer){
@@ -65,33 +75,36 @@ export class MultiChoiceComponent {
 			}
 		}
 		if (Math.random()<.25){
-			this.randomQ = this.q1;
+			this.qDisp = ['visible','hidden'];
 			this.answer0 = this.a1.split('@').join('\\');
 			this.answer1 = this.a2.split('@').join('\\');
 			this.cAnswer = 0;
 		}
 		else if (Math.random()<.333){
-			this.randomQ = this.q2;
+			this.qDisp = ['hidden','visible'];
 			this.answer0 = this.a1.split('@').join('\\');
 			this.answer1 = this.a2.split('@').join('\\');
 			this.cAnswer = 1;
 		}
 		else if (Math.random()<.5){
-			this.randomQ = this.q1;
+			this.qDisp = ['visible','hidden'];
 			this.answer0 = this.a2.split('@').join('\\');
 			this.answer1 = this.a1.split('@').join('\\');
 			this.cAnswer = 1;
 		}
 		else {
-			this.randomQ = this.q2;
+			this.qDisp = ['hidden','visible'];
 			this.answer0 = this.a2.split('@').join('\\');
 			this.answer1 = this.a1.split('@').join('\\');
 			this.cAnswer = 0;
 		}
+
 		
-		this.question = '\\text{What is }'+this.randomQ.split('@').join('\\')+'\\text{?}';
 		this.bWidth = (this.nCorrect*10).toString()+'px';
 		this.storage.set(this.pointsHere, this.nCorrect);
+		this.answers[0] = this.answer0;
+		this.answers[1] = this.answer1;
+
 
 	}
 
