@@ -19,18 +19,43 @@ export class MathjaxLatexComponent {
   constructor() {
     console.log('Hello MathjaxLatexComponent Component');
     this.mlid = Math.random().toString(36).substring(7);
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
   }
   ngAfterViewInit(){
-  	eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
-  }
-  ngOnChanges(){
-
+  	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   	if (this.mlid.length>0){
   		eval('MathJax.Hub.processSectionDelay = 0');
-	    let math = MathJax.Hub.getAllJax(this.mlid)[0];
-	    if (math){
-	    	MathJax.Hub.Queue(['Text',math,this.equation]);
+  		if (this.inline){
+		    let math = MathJax.Hub.getAllJax(this.mlid+'i')[0];
+		    if (math){
+		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+			}
+		}
+		else{
+		    let math = MathJax.Hub.getAllJax(this.mlid+'d')[0];
+		    if (math){
+		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+			}
+		}
+	}
+
+  }
+  ngOnChanges(){
+  	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  	if (this.mlid.length>0){
+  		eval('MathJax.Hub.processSectionDelay = 0');
+  		if (this.inline){
+		    let math = MathJax.Hub.getAllJax(this.mlid+'i')[0];
+		    if (math){
+		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+			}
+		}
+		else{
+		    let math = MathJax.Hub.getAllJax(this.mlid+'d')[0];
+		    if (math){
+		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+			}
 		}
 	}
   }

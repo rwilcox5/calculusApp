@@ -18,6 +18,7 @@ export class Trig3Page {
 	matchArrayArray: any[] = [];
 	matchArray: any[] = [];
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	for (var i=0;i<5;i++){
   		this.createMArray();

@@ -18,11 +18,13 @@ export class OrderStuffComponent {
   
   	@Input() private orderedItems: string[] = [];
   	@Input() private pointsHere: string = '';
+    @Input() private orderHeader: string = '';
 	catName = Trig0Page;
 	items = [];
 	nCorrect = 0;
 	bWidth: string;
   maxLine: string = '20px';
+  sortType: string = 'largest to smallest';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private platform: Platform) {
@@ -58,6 +60,7 @@ export class OrderStuffComponent {
       this.orderedItems[rand_array[x]]=this.orderedItems[rand_array[x]].split("@").join("\\")
       this.items.push(this.orderedItems[rand_array[x]]);
     }
+    
   }
 
   reorderItems(indexes) {
@@ -66,10 +69,19 @@ export class OrderStuffComponent {
     this.items.splice(indexes.to, 0, element);
 
     let isOrdered = true;
-    for (let x = 0; x < this.orderedItems.length; x++) {
-    	if (this.items[x]!=this.orderedItems[x]){
-    		isOrdered = false;
-    	}
+    if (this.sortType=='smallest to largest'){
+      for (let x = 0; x < this.orderedItems.length; x++) {
+      	if (this.items[x]!=this.orderedItems[x]){
+      		isOrdered = false;
+      	}
+      }
+    }
+    else if (this.sortType=='largest to smallest'){
+      for (let x = 0; x < this.orderedItems.length; x++) {
+        if (this.items[x]!=this.orderedItems[this.orderedItems.length-x-1]){
+          isOrdered = false;
+        }
+      }
     }
     if (isOrdered){
     	this.nCorrect++;
@@ -95,12 +107,34 @@ export class OrderStuffComponent {
 			this_array.splice(randX,1);
 			
 		}
-		if (arrayLen>1){
+    if (this.sortType=='smallest to largest'){
+      if (Math.random()<.333){
+        this.sortType='smallest to largest';
+      }
+      else{
+        this.sortType='largest to smallest';
+      }
+    }
+    else{
+      if (Math.random()<.666){
+        this.sortType='smallest to largest';
+      }
+      else{
+        this.sortType='largest to smallest';
+      }
+    }
+		if (arrayLen>1 && this.sortType=='smallest to largest'){
 			if (rand_array[0]==0 && rand_array[1]==1){
 				rand_array[0]=1;
 				rand_array[1]=0;
 			}
 		}
+    else if (arrayLen>1 && this.sortType=='largest to smallest'){
+      if (rand_array[0]==arrayLen-1 && rand_array[1]==arrayLen-2){
+        rand_array[0]=arrayLen-2;
+        rand_array[1]=arrayLen-1;
+      }
+    }
 		return rand_array;
 	}
 

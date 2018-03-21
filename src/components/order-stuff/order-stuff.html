@@ -1,6 +1,6 @@
 <!-- Generated template for the OrderStuffComponent component -->
 <ion-list>
-  <ion-list-header no-lines>Order the Angles from smallest to largest.</ion-list-header>
+  <ion-list-header no-lines>{{ orderHeader }}{{ sortType }}</ion-list-header>
   <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
     <ion-item *ngFor="let item of items" [style.maxHeight]="maxLine"><mathjax-latex [equation]='item'></mathjax-latex></ion-item>
   </ion-item-group>

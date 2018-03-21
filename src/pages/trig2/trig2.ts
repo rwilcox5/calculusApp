@@ -16,6 +16,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'trig2.html',
 })
 export class Trig2Page {
+	orderHeader: string = 'Order the angles from ';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {

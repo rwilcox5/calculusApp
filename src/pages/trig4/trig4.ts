@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'trig4.html',
 })
 export class Trig4Page {
+	orderHeader: string = 'Order values from ';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
