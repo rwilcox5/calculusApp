@@ -24,6 +24,7 @@ export class MultiChoiceComponent {
 	private answer1: string;
 	private answers: string[] = ['',''];
 	qDisp = ['visible','visible'];
+	qClass = ['q1','q2'];
 
 	@Input() private q1: string = '';
 	@Input() private q2: string = '';

@@ -13,10 +13,12 @@ import { Component, Input } from '@angular/core';
 export class MathjaxLatexComponent {
 
   @Input() private equation: string = '';
-  @Input() private mlid: string = '';
+  @Input() private inline: boolean = false;
+  private mlid: string = '';
 
   constructor() {
     console.log('Hello MathjaxLatexComponent Component');
+    this.mlid = Math.random().toString(36).substring(7);
 
   }
   ngAfterViewInit(){
@@ -25,11 +27,12 @@ export class MathjaxLatexComponent {
   ngOnChanges(){
 
   	if (this.mlid.length>0){
-  		console.log(this.mlid);
+  		eval('MathJax.Hub.processSectionDelay = 0');
 	    let math = MathJax.Hub.getAllJax(this.mlid)[0];
 	    if (math){
-			math.Text(this.equation);
+	    	MathJax.Hub.Queue(['Text',math,this.equation]);
 		}
 	}
   }
+
 }

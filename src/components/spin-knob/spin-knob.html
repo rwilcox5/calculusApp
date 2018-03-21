@@ -1,13 +1,30 @@
 <!-- Generated template for the SpinKnobComponent component -->
 
 
-<div>
-<img src="assets/imgs/knob.png" [width]="kWidth" [height]="kWidth" [style.transform]='rotRadians'/>
-</div>
-<div (mousemove)='getKnob($event)' (touchmove)='getKnob($event)' style="position:relative;" [style.width]='kWidth+"px"' [style.top]='"-"+kWidth+"px"'>
-	<img src="assets/imgs/blank.png" [width]="kWidth" [height]="kWidth"/>
-</div>
-<div>Spin to {{ cAngle[0] }}pi/{{ cAngle[1] }}</div>
-<div>{{ angle[0] }}pi/{{ angle[1] }}</div>
-<div>{{ finRadians }}</div>
-<progress-bar [bWidth]='bWidth'></progress-bar>
+<ion-grid [style.width]='gridWidth' [style.float]='fLeft' no-padding>
+	<ion-row>
+		<ion-col>
+			<div>
+				<img src="assets/imgs/knob.png" [width]="kWidth" [height]="kWidth" [style.transform]='rotRadians'/>
+			</div>
+			<div (mousemove)='getKnob($event)' (touchmove)='getKnob($event)' (mousedown)='startKnob($event)' (mouseup)='stopKnob($event)' (touchstart)='startKnob($event)' (touchend)='stopKnob($event)' style="position:relative;" [style.width]='kWidth+"px"' [style.top]='"-"+kWidth+"px"'>
+				<img src="assets/imgs/blank.png" [width]="kWidth" [height]="kWidth"/>
+			</div>
+		</ion-col>
+	</ion-row>
+	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+		<ion-col>
+			Set Angle To <mathjax-latex [equation]='cAngleTex' [inline]='true'></mathjax-latex> Radians
+		</ion-col>
+	</ion-row>
+	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+		<ion-col>
+			Currently: <mathjax-latex [equation]='angleTex' [inline]='true'></mathjax-latex> Radians
+		</ion-col>
+	</ion-row>
+	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+		<ion-col>
+			<progress-bar [bWidth]='bWidth'></progress-bar>
+		</ion-col>
+	</ion-row>
+</ion-grid>
