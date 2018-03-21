@@ -6,6 +6,7 @@ import { MatchStuffComponent } from './match-stuff/match-stuff';
 import { SpinKnobComponent } from './spin-knob/spin-knob';
 import { MasterMindComponent } from './master-mind/master-mind';
 import { DoubleSudokuComponent } from './double-sudoku/double-sudoku';
+import { MathjaxLatexComponent } from './mathjax-latex/mathjax-latex';
 @NgModule({
 	declarations: [MultiChoiceComponent,
     ProgressBarComponent,
@@ -13,7 +14,8 @@ import { DoubleSudokuComponent } from './double-sudoku/double-sudoku';
     MatchStuffComponent,
     SpinKnobComponent,
     MasterMindComponent,
-    DoubleSudokuComponent],
+    DoubleSudokuComponent,
+    MathjaxLatexComponent],
 	imports: [],
 	exports: [MultiChoiceComponent,
     ProgressBarComponent,
@@ -21,6 +23,7 @@ import { DoubleSudokuComponent } from './double-sudoku/double-sudoku';
     MatchStuffComponent,
     SpinKnobComponent,
     MasterMindComponent,
-    DoubleSudokuComponent]
+    DoubleSudokuComponent,
+    MathjaxLatexComponent]
 })
 export class ComponentsModule {}

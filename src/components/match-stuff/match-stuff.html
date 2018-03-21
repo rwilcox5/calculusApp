@@ -2,33 +2,22 @@
 <ion-grid>
   <ion-row>
   	<ion-col *ngFor='let i of [0,1,2]'>
-      <button (click)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton">$\${{cellValue[0][i]}}$\$</button>
+      <button (click)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]' [mlid]='cellID[0][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
   <ion-row>
-    <ion-col>
-      <button (click)="cellClick(1,0);" [style.background-color]='cellBG[1][0]' class="matchButton">$\${{cellValue[1][0]}}$\$</button>
-    </ion-col>
-    <ion-col>
-      <button (click)="cellClick(1,1);" [style.background-color]='cellBG[1][1]' class="matchButton">$\${{cellValue[1][1]}}$\$</button>
-    </ion-col>
-    <ion-col>
-      <button (click)="cellClick(1,2);" [style.background-color]='cellBG[1][2]' class="matchButton">$\${{cellValue[1][2]}}$\$</button>
+    <ion-col *ngFor='let i of [0,1,2]'>
+      <button (click)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]' [mlid]='cellID[1][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
   <ion-row>
-    <ion-col>
-      <button (click)="cellClick(2,0);" [style.background-color]='cellBG[2][0]' class="matchButton">$\${{cellValue[2][0]}}$\$</button>
-    </ion-col>
-    <ion-col>
-      <button (click)="cellClick(2,1);" [style.background-color]='cellBG[2][1]' class="matchButton">$\${{cellValue[2][1]}}$\$</button>
-    </ion-col>
-    <ion-col>
-      <button (click)="cellClick(2,2);" [style.background-color]='cellBG[2][2]' class="matchButton">$\${{cellValue[2][2]}}$\$</button>
+    <ion-col *ngFor='let i of [0,1,2]'>
+      <button (click)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]' [mlid]='cellID[2][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
+
 
   <ion-row>
     <progress-bar [bWidth]='bWidth'></progress-bar>

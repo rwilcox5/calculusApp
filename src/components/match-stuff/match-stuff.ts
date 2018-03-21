@@ -27,6 +27,7 @@ export class MatchStuffComponent {
   private nsize: number = 3;
   private matchArray: any[] = [];
   private bWidth: string;
+  private cellID: string[][] = [['ml1','ml2','ml3'],['ml4','ml5','ml6'],['ml7','ml8','ml9']];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
 
@@ -39,15 +40,12 @@ export class MatchStuffComponent {
   	this.storage.get(this.pointsHere).then((val) => {
 	    this.nCorrect = val;
 	    this.bWidth = (this.nCorrect*10).toString()+'px'; 
-	    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
 	  });
   	
   	
   }
 
-  ngOnChanges() {
-    eval('MathJax.Hub.Queue(["Typeset",MathJax.Hub])');
-  }
+
 
   cellClick(rowID,colID){
   		if (this.firstClick[0]>-1){
@@ -63,7 +61,6 @@ export class MatchStuffComponent {
 
 					this.createMArray();
 					this.createMatching();
-					this.ngOnChanges();
 				}
 			}
 			else{

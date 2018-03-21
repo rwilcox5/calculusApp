@@ -24,6 +24,7 @@ import { MatchStuffComponent } from '../components/match-stuff/match-stuff';
 import { SpinKnobComponent } from '../components/spin-knob/spin-knob';
 import { MasterMindComponent } from '../components/master-mind/master-mind';
 import { DoubleSudokuComponent } from '../components/double-sudoku/double-sudoku';
+import { MathjaxLatexComponent } from '../components/mathjax-latex/mathjax-latex';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,6 +48,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SpinKnobComponent,
     MasterMindComponent,
     DoubleSudokuComponent,
+    MathjaxLatexComponent,
     ListPage,
 
   ],
