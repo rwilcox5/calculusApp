@@ -48,7 +48,7 @@ export class MatchStuffComponent {
 
 
   cellClick(rowID,colID){
-
+  		this.cellBG[rowID][colID] = 'yellow';
   		if (this.firstClick[0]>-1){
 			if (this.letters[this.firstClick[0]][this.firstClick[1]][1]==this.letters[rowID][colID][1]){
 				this.cellBG[rowID][colID] = 'green';
@@ -71,13 +71,15 @@ export class MatchStuffComponent {
 			}
 		}
 		else{
-			this.cellBG[rowID][colID] = 'yellow';
+			
 			for (var i =0;i<this.nsize;i++){
 				for (var ii = 0; ii<this.nsize;ii++){
-					this.cellBG[i][ii] = 'black';
-					for (var iii=0;iii<this.matched.length;iii++){
-						if (this.letters[i][ii][1]==this.matched[iii]){
-							this.cellBG[i][ii] = 'green';
+					if (i != rowID || ii != colID){
+						this.cellBG[i][ii] = 'black';
+						for (var iii=0;iii<this.matched.length;iii++){
+							if (this.letters[i][ii][1]==this.matched[iii]){
+								this.cellBG[i][ii] = 'green';
+							}
 						}
 					}
 				}
