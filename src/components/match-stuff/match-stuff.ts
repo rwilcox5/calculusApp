@@ -48,9 +48,7 @@ export class MatchStuffComponent {
 
 
   cellClick(rowID,colID){
-  		for (var globalVar in window){
-  			console.log(globalVar);
-  		}
+
   		let fc = this.firstClick;
   		if (fc[0]>-1){
 			if (this.letters[fc[0]][fc[1]][1]==this.letters[rowID][colID][1]){
