@@ -15,21 +15,16 @@ import { Trig0Page } from '../../pages/trig0/trig0';
 })
 export class MultiChoiceComponent {
 	catName = Trig0Page;
-	questions = [];
+	private question: string = '';
 
 	private nCorrect: number;
-	private randomQ: string;
 	private cAnswer: number;
-	private answer0: string;
-	private answer1: string;
 	private answers: string[] = ['',''];
-	qDisp = ['visible','visible'];
-	qClass = ['q1','q2'];
 
-	@Input() private q1: string = '';
-	@Input() private q2: string = '';
-	@Input() private a1: string = '';
-	@Input() private a2: string = '';
+	@Input() private q1: string[] = [''];
+	@Input() private q2: string[] = [''];
+	@Input() private a1: string[] = [''];
+	@Input() private a2: string[] = [''];
 	@Input() private pointsHere: string = '';
 
 
@@ -44,12 +39,12 @@ export class MultiChoiceComponent {
 	}
 
 	ngOnInit() {
-		this.questions = ['\\text{What is }'+this.q1.split('@').join('\\')+'\\text{?}','\\text{What is }'+this.q2.split('@').join('\\')+'\\text{?}'];
+
 		this.storage.get(this.pointsHere).then((val) => {
 		    this.nCorrect = val;
 		    this.bWidth = (this.nCorrect*10).toString()+'px';
 			
-			this.randomQ = '';
+			this.question = '';
 			this.newRandom();		
 			
 			
@@ -65,8 +60,9 @@ export class MultiChoiceComponent {
 
 	newRandom(answer=-1){
 		console.log(answer);
+		console.log(this.cAnswer);
 
-		if (this.randomQ !=''){
+		if (this.question !=''){
 			if (answer==this.cAnswer){
 				this.nCorrect++;
 			}
@@ -74,38 +70,64 @@ export class MultiChoiceComponent {
 				this.nCorrect=0;
 			}
 		}
-		if (Math.random()<.25){
-			this.qDisp = ['visible','hidden'];
-			this.answer0 = this.a1.split('@').join('\\');
-			this.answer1 = this.a2.split('@').join('\\');
-			this.cAnswer = 0;
+		let x1 = Math.floor(Math.random()*this.q1.length);
+		let x2 = Math.floor(Math.random()*this.q2.length);
+
+		let qn = Math.floor(Math.random()*2)+1;
+		this.answers = [];
+		let answerArray = [];
+		
+		if (qn==1){
+			this.question = this.q1[x1].split('@').join('\\');
+
+			for (var i=0;i<this.a1[x1].length;i++){
+				this.answers.push('');
+			}
+			answerArray = this.getRandomArray(this.a1[x1].length);
+			for (var i=0;i<this.a1[x1].length;i++){
+				this.answers[answerArray[i]] = this.a1[x1][i].split('@').join('\\');
+			}
+			
 		}
-		else if (Math.random()<.333){
-			this.qDisp = ['hidden','visible'];
-			this.answer0 = this.a1.split('@').join('\\');
-			this.answer1 = this.a2.split('@').join('\\');
-			this.cAnswer = 1;
+		else{
+			this.question = this.q2[x2].split('@').join('\\');
+
+			for (var i=0;i<this.a2[x2].length;i++){
+				this.answers.push('');
+			}
+			answerArray = this.getRandomArray(this.a2[x2].length);
+			for (var i=0;i<this.a2[x2].length;i++){
+				this.answers[answerArray[i]] = this.a2[x2][i].split('@').join('\\');
+			}
 		}
-		else if (Math.random()<.5){
-			this.qDisp = ['visible','hidden'];
-			this.answer0 = this.a2.split('@').join('\\');
-			this.answer1 = this.a1.split('@').join('\\');
-			this.cAnswer = 1;
-		}
-		else {
-			this.qDisp = ['hidden','visible'];
-			this.answer0 = this.a2.split('@').join('\\');
-			this.answer1 = this.a1.split('@').join('\\');
-			this.cAnswer = 0;
-		}
+		this.cAnswer = answerArray[0];
 
 		
 		this.bWidth = (this.nCorrect*10).toString()+'px';
 		this.storage.set(this.pointsHere, this.nCorrect);
-		this.answers[0] = this.answer0;
-		this.answers[1] = this.answer1;
 
+	}
 
+	getRandomArray(arrayLen){
+		var this_array = [];
+		var rand_array = [];
+		let i=0;
+		for (i =0; i<arrayLen;i++){
+			this_array.push(i);
+		}
+		for(i = 0;i<arrayLen;i++){
+			var randX = Math.floor(Math.random() * (arrayLen-i));
+			rand_array.push(this_array[randX]);
+			this_array.splice(randX,1);
+			
+		}
+		if (arrayLen>1){
+			if (rand_array[0]==0 && rand_array[1]==1){
+				rand_array[0]=1;
+				rand_array[1]=0;
+			}
+		}
+		return rand_array;
 	}
 
 }

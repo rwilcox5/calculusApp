@@ -1,0 +1,20 @@
+<!-- Generated template for the RiemannCanvasComponent component -->
+<div>
+  <canvas (mouseover)='handleMouseOver($event)' (mousedown)='handleMouseDown($event)' (mouseup)='handleMouseUp()' (mousemove)='handleMouseMove($event)' #canvas></canvas>
+</div>
+
+<button ion-button (click)='clearCanvas()'>Clear</button>
+<br />Total area of rectangles: {{ totalArea }}
+<br />{{ message }}
+<form (ngSubmit)="guessArea()">
+  <ion-item>
+    <ion-label>Area of Region?</ion-label>
+    <ion-input type="text" [(ngModel)]="predArea" name="area"></ion-input>
+  </ion-item>
+  <button ion-button type="submit" block>Submit</button>
+</form>
+{{ predArea }}
+{{ actArea }}
+{{ predError }}
+{{ nextLevel }}
+

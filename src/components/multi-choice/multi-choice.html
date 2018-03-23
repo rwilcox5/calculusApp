@@ -1,8 +1,8 @@
 <!-- Generated template for the MultiChoiceComponent component -->
 <ion-grid>
-	  <ion-row *ngFor='let question of questions; let i = index'>
+	  <ion-row>
 	  	<ion-col>
-	    	<div [style.visibility]='qDisp[i]' [class]='qClass[i]'><h2><mathjax-latex [equation]='question'></mathjax-latex></h2></div>
+	    	<h2><mathjax-latex [equation]='question'></mathjax-latex></h2>
 		</ion-col>
 		<ion-col>
 		</ion-col>

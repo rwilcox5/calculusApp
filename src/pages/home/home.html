@@ -1,18 +1,16 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Calculus College</h3>
 
-  <p>
-    If you get lost, the <button [navPush]="trig0">docs</button> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <button ion-button [navPush]="functions0">Functions</button>
+  <button ion-button [navPush]="trig0">Trig</button>
+  <button ion-button [navPush]="solve0">Solve for x</button>
+  <button ion-button [navPush]="limits0">Limits</button>
+  <button ion-button [navPush]="derivatives0">Derivatives</button>
+  <button ion-button [navPush]="derapp0">Derivative Applications</button>
+  <button ion-button [navPush]="riemann0">Riemann Sums</button>
+  <button ion-button [navPush]="integrals0">Integrals</button>
+  <button ion-button [navPush]="intapp0">Integral Applications</button>
+  
+  
 </ion-content>

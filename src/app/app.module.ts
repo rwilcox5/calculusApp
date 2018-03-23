@@ -8,7 +8,7 @@ import { KatexModule } from 'ng-katex';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { Trig0Page } from '../pages/trig0/trig0';
+
 import { Trig1Page } from '../pages/trig1/trig1';
 import { Trig2Page } from '../pages/trig2/trig2';
 import { Trig3Page } from '../pages/trig3/trig3';
@@ -16,6 +16,32 @@ import { Trig4Page } from '../pages/trig4/trig4';
 import { Trig5Page } from '../pages/trig5/trig5';
 import { Trig6Page } from '../pages/trig6/trig6';
 import { Trig7Page } from '../pages/trig7/trig7';
+import { Trig8Page } from '../pages/trig8/trig8';
+import { Trig9Page } from '../pages/trig9/trig9';
+import { Trig10Page } from '../pages/trig10/trig10';
+import { Trig11Page } from '../pages/trig11/trig11';
+import { Trig12Page } from '../pages/trig12/trig12';
+
+
+import { Solve1Page } from '../pages/solve1/solve1';
+import { Solve2Page } from '../pages/solve2/solve2';
+import { Solve3Page } from '../pages/solve3/solve3';
+import { Solve4Page } from '../pages/solve4/solve4';
+import { Solve5Page } from '../pages/solve5/solve5';
+
+import { Solve6Page } from '../pages/solve6/solve6';
+import { Riemann1Page } from '../pages/riemann1/riemann1';
+//New Pages
+
+import { Functions0Page } from '../pages/functions0/functions0';
+import { Trig0Page } from '../pages/trig0/trig0';
+import { Solve0Page } from '../pages/solve0/solve0';
+import { Limits0Page } from '../pages/limits0/limits0';
+import { Derivatives0Page } from '../pages/derivatives0/derivatives0';
+import { Derapp0Page } from '../pages/derapp0/derapp0';
+import { Riemann0Page } from '../pages/riemann0/riemann0';
+import { Integrals0Page } from '../pages/integrals0/integrals0';
+import { Intapp0Page } from '../pages/intapp0/intapp0';
 
 import { MultiChoiceComponent } from '../components/multi-choice/multi-choice';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
@@ -25,6 +51,7 @@ import { SpinKnobComponent } from '../components/spin-knob/spin-knob';
 import { MasterMindComponent } from '../components/master-mind/master-mind';
 import { DoubleSudokuComponent } from '../components/double-sudoku/double-sudoku';
 import { MathjaxLatexComponent } from '../components/mathjax-latex/mathjax-latex';
+import { RiemannCanvasComponent } from '../components/riemann-canvas/riemann-canvas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +60,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
+    Functions0Page,
     Trig0Page,
+    Solve0Page,
+    Limits0Page,
+    Derivatives0Page,
+    Derapp0Page,
+    Riemann0Page,
+    Integrals0Page,
+    Intapp0Page,
+
     Trig1Page,
     Trig2Page,
     Trig3Page,
@@ -41,6 +77,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Trig5Page,
     Trig6Page,
     Trig7Page,
+    Trig8Page,
+    Trig9Page,
+    Trig10Page,
+    Trig11Page,
+    Trig12Page,
+
+    Solve1Page,
+    Solve2Page,
+    Solve3Page,
+    Solve4Page,
+    Solve5Page,
+
+    	Solve6Page,
+	Riemann1Page,
+//New Names
+
     MultiChoiceComponent,
     ProgressBarComponent,
     OrderStuffComponent,
@@ -49,6 +101,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MasterMindComponent,
     DoubleSudokuComponent,
     MathjaxLatexComponent,
+    RiemannCanvasComponent,
     ListPage,
 
   ],
@@ -63,7 +116,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
+    Functions0Page,
     Trig0Page,
+    Solve0Page,
+    Limits0Page,
+    Derivatives0Page,
+    Derapp0Page,
+    Riemann0Page,
+    Integrals0Page,
+    Intapp0Page,
+
     Trig1Page,
     Trig2Page,
     Trig3Page,
@@ -71,6 +133,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Trig5Page,
     Trig6Page,
     Trig7Page,
+    Trig8Page,
+    Trig9Page,
+    Trig10Page,
+    Trig11Page,
+    Trig12Page,
+
+    Solve1Page,
+    Solve2Page,
+    Solve3Page,
+    Solve4Page,
+    Solve5Page,
+
+    	Solve6Page,
+	Riemann1Page,
+//New Names
     ListPage
   ],
   providers: [

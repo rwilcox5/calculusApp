@@ -15,46 +15,64 @@ export class MathjaxLatexComponent {
   @Input() private equation: string = '';
   @Input() private inline: boolean = false;
   private mlid: string = '';
+  private mjh = MathJax.Hub;
 
   constructor() {
-    console.log('Hello MathjaxLatexComponent Component');
-    this.mlid = Math.random().toString(36).substring(7);
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
-  }
-  ngAfterViewInit(){
-  	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-  	if (this.mlid.length>0){
-  		eval('MathJax.Hub.processSectionDelay = 0');
+    this.mlid = Math.random().toString(36).substring(7);
+    this.mjh.Queue(["Typeset",this.mjh]);
+    if (this.mlid.length>0){
+  		eval('this.mjh.processSectionDelay = 0');
   		if (this.inline){
-		    let math = MathJax.Hub.getAllJax(this.mlid+'i')[0];
+		    let math = this.mjh.getAllJax(this.mlid+'i')[0];
 		    if (math){
-		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+		    	this.mjh.Queue(['Text',math,this.equation]);
 			}
 		}
 		else{
-		    let math = MathJax.Hub.getAllJax(this.mlid+'d')[0];
+		    let math = this.mjh.getAllJax(this.mlid+'d')[0];
 		    if (math){
-		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+		    	this.mjh.Queue(['Text',math,this.equation]);
+			}
+		}
+	}
+
+  }
+  ngAfterViewChecked(){
+
+  	this.mjh.Queue(["Typeset",this.mjh]);
+  	if (this.mlid.length>0){
+  		eval('this.mjh.processSectionDelay = 0');
+  		if (this.inline){
+		    let math = this.mjh.getAllJax(this.mlid+'i')[0];
+		    if (math){
+		    	this.mjh.Queue(['Text',math,this.equation]);
+			}
+		}
+		else{
+		    let math = this.mjh.getAllJax(this.mlid+'d')[0];
+		    if (math){
+		    	this.mjh.Queue(['Text',math,this.equation]);
 			}
 		}
 	}
 
   }
   ngOnChanges(){
-  	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+
+  	this.mjh.Queue(["Typeset",this.mjh]);
   	if (this.mlid.length>0){
-  		eval('MathJax.Hub.processSectionDelay = 0');
+  		eval('this.mjh.processSectionDelay = 0');
   		if (this.inline){
-		    let math = MathJax.Hub.getAllJax(this.mlid+'i')[0];
+		    let math = this.mjh.getAllJax(this.mlid+'i')[0];
 		    if (math){
-		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+		    	this.mjh.Queue(['Text',math,this.equation]);
 			}
 		}
 		else{
-		    let math = MathJax.Hub.getAllJax(this.mlid+'d')[0];
+		    let math = this.mjh.getAllJax(this.mlid+'d')[0];
 		    if (math){
-		    	MathJax.Hub.Queue(['Text',math,this.equation]);
+		    	this.mjh.Queue(['Text',math,this.equation]);
 			}
 		}
 	}

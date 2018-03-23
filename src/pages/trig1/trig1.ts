@@ -16,6 +16,10 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'trig1.html',
 })
 export class Trig1Page {
+	q1: string[] = ["@text{What is }@sin(0)?"];
+	q2: string[] = ["@text{What is }@cos(0)?"];
+	a1: string[][] = [["0",'1']];
+	a2: string[][] = [["1",'0']];
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
 		

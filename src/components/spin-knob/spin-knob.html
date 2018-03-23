@@ -6,23 +6,28 @@
 		<ion-col>
 			<div>
 				<img src="assets/imgs/knob.png" [width]="kWidth" [height]="kWidth" [style.transform]='rotRadians'/>
+				
 			</div>
-			<div (mousemove)='getKnob($event)' (touchmove)='getKnob($event)' (mousedown)='startKnob($event)' (mouseup)='stopKnob($event)' (touchstart)='startKnob($event)' (touchend)='stopKnob($event)' style="position:relative;" [style.width]='kWidth+"px"' [style.top]='"-"+kWidth+"px"'>
+			<div [style.width]='kWidth+"px"' [style.height]='kWidth+"px"' style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+				<img src="assets/imgs/full.png" [width]="5" [height]="rotHeight" [style.top]='rotTop' [style.left]='rotLeft' style='position:relative;' *ngIf="showSin">
+				<img src="assets/imgs/full.png" [width]="rotWidth" [height]="5" [style.top]='rotTopC' [style.left]='rotLeftC' style='position:relative;' *ngIf="showCos">
+			</div>
+			<div (mousemove)='getKnob($event)' (touchmove)='getKnob($event)' (mousedown)='startKnob($event)' (mouseup)='stopKnob($event)' (touchstart)='startKnob($event)' (touchend)='stopKnob($event)' style="position:relative;" [style.width]='kWidth+"px"' [style.top]='"-"+kkWidth+"px"'>
 				<img src="assets/imgs/blank.png" [width]="kWidth" [height]="kWidth"/>
 			</div>
 		</ion-col>
 	</ion-row>
-	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+	<ion-row style="position:relative;" [style.top]='"-"+kkWidth+"px"'>
 		<ion-col>
 			Set Angle To <mathjax-latex [equation]='cAngleTex' [inline]='true'></mathjax-latex> Radians
 		</ion-col>
 	</ion-row>
-	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+	<ion-row *ngIf='showAngle' style="position:relative;" [style.top]='"-"+kkWidth+"px"'>
 		<ion-col>
 			Currently: <mathjax-latex [equation]='angleTex' [inline]='true'></mathjax-latex> Radians
 		</ion-col>
 	</ion-row>
-	<ion-row style="position:relative;" [style.top]='"-"+kWidth+"px"'>
+	<ion-row style="position:relative;" [style.top]='"-"+kkWidth+"px"'>
 		<ion-col>
 			<progress-bar [bWidth]='bWidth'></progress-bar>
 		</ion-col>
