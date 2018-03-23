@@ -51,10 +51,11 @@ export class MatchStuffComponent {
   		for (var globalVar in window){
   			console.log(globalVar);
   		}
-  		if (this.firstClick[0]>-1){
-			if (this.letters[this.firstClick[0]][this.firstClick[1]][1]==this.letters[rowID][colID][1]){
+  		let fc = this.firstClick;
+  		if (fc[0]>-1){
+			if (this.letters[fc[0]][fc[1]][1]==this.letters[rowID][colID][1]){
 				this.cellBG[rowID][colID] = 'green';
-				this.cellBG[this.firstClick[0]][this.firstClick[1]] = 'green';
+				this.cellBG[fc[0]][fc[1]] = 'green';
 				this.matched.push(this.letters[rowID][colID][1]);
 				this.firstClick = [-1,-1];
 				if (this.matched.length==Math.floor(this.matchArray.length/2)){
@@ -73,6 +74,9 @@ export class MatchStuffComponent {
 			}
 		}
 		else{
+			this.cellBG[rowID][colID] = 'yellow';
+			this.firstClick = [rowID,colID];
+			
 			for (var i =0;i<this.nsize;i++){
 				for (var ii = 0; ii<this.nsize;ii++){
 					this.cellBG[i][ii] = 'black';
@@ -84,8 +88,7 @@ export class MatchStuffComponent {
 				}
 
 			}
-			this.firstClick = [rowID,colID];
-			this.cellBG[rowID][colID] = 'yellow';
+			
 		}
   }
 

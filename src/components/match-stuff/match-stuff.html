@@ -2,19 +2,19 @@
 <ion-grid>
   <ion-row>
   	<ion-col *ngFor='let i of [0,1,2]'>
-      <button (click)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]'></mathjax-latex></button>
+      <button tappable (click)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col *ngFor='let i of [0,1,2]'>
-      <button (click)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]'></mathjax-latex></button>
+      <button tappable (click)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col *ngFor='let i of [0,1,2]'>
-      <button (click)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]'></mathjax-latex></button>
+      <button tappable (click)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
