@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//New Pages
 
 /**
  * Generated class for the Intapp0Page page.
@@ -14,6 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'intapp0.html',
 })
 export class Intapp0Page {
+	//New Names
+
+	levelPoints = {'intapp1':'0px'};
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

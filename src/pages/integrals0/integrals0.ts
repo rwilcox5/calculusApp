@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//New Pages
 
 /**
  * Generated class for the Integrals0Page page.
@@ -14,7 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'integrals0.html',
 })
 export class Integrals0Page {
+	//New Names
 
+	levelPoints = {'integrals1':'0px'};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

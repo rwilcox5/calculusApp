@@ -5,5 +5,8 @@ match-stuff {
 		color: white;
 		font-size: 20px;
 	}
+	.matchButton.activated {
+		color: rgba(255,255,0,1);
+	}
 
 }
