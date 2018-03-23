@@ -48,6 +48,9 @@ export class MatchStuffComponent {
 
 
   cellClick(rowID,colID){
+  		for (var globalVar in window){
+  			console.log(globalVar);
+  		}
   		if (this.firstClick[0]>-1){
 			if (this.letters[this.firstClick[0]][this.firstClick[1]][1]==this.letters[rowID][colID][1]){
 				this.cellBG[rowID][colID] = 'green';

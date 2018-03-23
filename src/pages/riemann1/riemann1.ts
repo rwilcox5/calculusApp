@@ -19,8 +19,8 @@ export class Riemann1Page {
 	private maxRects: number = 3;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.xfn = '5';
-  	this.maxError = [-10,20];
+  	this.xfn = '3-x';
+  	this.maxError = [-20,20];
   	this.maxRects = 3;
   }
 

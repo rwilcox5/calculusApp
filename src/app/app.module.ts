@@ -31,6 +31,10 @@ import { Solve5Page } from '../pages/solve5/solve5';
 
 import { Solve6Page } from '../pages/solve6/solve6';
 import { Riemann1Page } from '../pages/riemann1/riemann1';
+import { Riemann2Page } from '../pages/riemann2/riemann2';
+import { Riemann3Page } from '../pages/riemann3/riemann3';
+import { Riemann4Page } from '../pages/riemann4/riemann4';
+import { Riemann5Page } from '../pages/riemann5/riemann5';
 //New Pages
 
 import { Functions0Page } from '../pages/functions0/functions0';
@@ -91,6 +95,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     	Solve6Page,
 	Riemann1Page,
+	Riemann2Page,
+	Riemann3Page,
+	Riemann4Page,
+	Riemann5Page,
 //New Names
 
     MultiChoiceComponent,
@@ -147,6 +155,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     	Solve6Page,
 	Riemann1Page,
+	Riemann2Page,
+	Riemann3Page,
+	Riemann4Page,
+	Riemann5Page,
 //New Names
     ListPage
   ],

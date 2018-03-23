@@ -1,6 +1,6 @@
 <!-- Generated template for the RiemannCanvasComponent component -->
 <div>
-  <canvas (touchstart)='handleMouseDown($event)' (touchend)='handleMouseUp()' (touchmove)='handleMouseMove($event)' (mouseover)='handleMouseOver($event)' (mousedown)='handleMouseDown($event)' (mouseup)='handleMouseUp()' (mousemove)='handleMouseMove($event)' #canvas></canvas>
+  <canvas (touchstart)='handleMouseDown($event)' (touchend)='handleMouseUp()' (touchmove)='handleMouseMove($event)' (mouseover)='handleMouseOver($event)' (mousedown)='handleMouseDown($event,false)' (mouseup)='handleMouseUp()' (mousemove)='handleMouseMove($event,false)' #canvas></canvas>
 </div>
 
 <button ion-button (click)='clearCanvas()'>Clear</button>
@@ -17,4 +17,7 @@
 {{ actArea }}
 {{ predError }}
 {{ nextLevel }}
+<ion-row>
+    <button ion-button navPop>Back to Category</button>
+  </ion-row>
 

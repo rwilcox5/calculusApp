@@ -45,8 +45,8 @@ export class RiemannCanvasComponent {
   ngAfterViewInit(){
   	console.log('Hello RiemannCanvasComponent Component');
   	this.canvas = this.canvasEl.nativeElement;
-  	this.canvas.height = 500;
-  	this.canvas.width = 500;
+  	this.canvas.height = 400;
+  	this.canvas.width = 400;
   	this.ctx = this.canvas.getContext('2d');
   	this.createCanvas();
    
@@ -56,10 +56,6 @@ export class RiemannCanvasComponent {
   	this.rectangles = [];
   	this.totalArea = 0;
   	this.lastRec = [];
-  	this.ctx.fillStyle = "#3e3e3e";
-   this.ctx.fillRect(0, 0, 500, 500);
-   	this.offsetX = this.canvas.offsetLeft;
-	this.offsetY = this.canvas.offsetTop;
 	this.actArea = drawCurve(this.ctx,this.canvas.height,this.canvas.width,this.xfn,this.borderCanvas);
   }
 	
@@ -75,10 +71,23 @@ export class RiemannCanvasComponent {
 	}
 
 
-	handleMouseMove(e) {
+	handleMouseMove(event,touchE=true) {
 		if (this.isDrawing) {
-			this.mouseX = e.clientX - this.offsetX;
-			this.mouseY = e.clientY - this.offsetY;	
+			let picLeft = event.target.getBoundingClientRect().left;
+      		let picTop = event.target.getBoundingClientRect().top;
+      		console.log(picLeft, picTop);
+      		let tx = 0;
+      		let ty = 0;
+      		if (touchE){
+				tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || event.touches[0].offsetX || event.touches[0].clientX -Math.floor(picLeft) || event.touches[0].pageX -Math.floor(picLeft) || event.touches[0].screenX -Math.floor(picLeft) || 0;
+	      		ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || event.touches[0].offsetY || event.touches[0].clientY -Math.floor(picTop) || event.touches[0].pageY -Math.floor(picTop) || event.touches[0].screenY -Math.floor(picTop) || 0;
+      		}
+      		else{
+      			tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || 0;
+	      		ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || 0;      		
+      		}
+			this.mouseX = tx;
+			this.mouseY = ty;	
 			if (this.mouseX<=this.borderCanvas){
 				this.mouseX = this.borderCanvas+1;
 			}
@@ -108,13 +117,25 @@ export class RiemannCanvasComponent {
 	handleMouseOver(e) {
 		this.canvas.style.cursor = "crosshair";	
 	}
-	handleMouseDown(e) {
-		e.preventDefault();
+	handleMouseDown(event,touchE=true) {
+		event.preventDefault();
 		if (this.rectangles.length<this.maxRects){
+			let picLeft = event.target.getBoundingClientRect().left;
+      		let picTop = event.target.getBoundingClientRect().top;
+			let tx = 0;
+      		let ty = 0;
+      		if (touchE){
+				tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || event.touches[0].offsetX || event.touches[0].clientX -Math.floor(picLeft) || event.touches[0].pageX -Math.floor(picLeft) || event.touches[0].screenX -Math.floor(picLeft) || 0;
+	      		ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || event.touches[0].offsetY || event.touches[0].clientY -Math.floor(picTop) || event.touches[0].pageY -Math.floor(picTop) || event.touches[0].screenY -Math.floor(picTop) || 0;
+      		}
+      		else{
+      			tx = event.offsetX || event.clientX -Math.floor(picLeft) || event.pageX -Math.floor(picLeft) || event.screenX -Math.floor(picLeft) || 0;
+	      		ty = event.offsetY || event.clientY -Math.floor(picTop) || event.pageY -Math.floor(picTop) || event.screenY -Math.floor(picTop) || 0;      		
+      		}
 			this.canvas.style.cursor = "crosshair";		
 			this.isDrawing = true
-			this.startX = e.clientX - this.offsetX;
-			this.startY = e.clientY - this.offsetY;
+			this.startX = tx;
+			this.startY = ty;
 			if (this.startX<=this.borderCanvas){
 				this.startX = this.borderCanvas+1;
 			}
@@ -167,17 +188,25 @@ function drawCurve(ctx,cw,ch,xfn,borderCanvas){
 
 	ctx.fillStyle='rgba(150,150,150, .5)';
 	ctx.fillRect(borderCanvas, borderCanvas, cw-2*borderCanvas,ch-2*borderCanvas);
+
+	ctx.fillStyle='rgba(135,206,250, .25)';
 	ctx.beginPath();
 	ctx.moveTo(borderCanvas,ch-25*myf(0,xfn)-borderCanvas);
 	let actArea = 0;
 
 	for (var i=borderCanvas;i<cw-borderCanvas;i++){
-		ctx.lineTo(i,ch-25*myf((i-borderCanvas)/100,xfn)-borderCanvas);
-		actArea+=25*myf((i-borderCanvas)/100,xfn);
+		let heightOfFunction = myf((i-borderCanvas)/100,xfn);
+		if (heightOfFunction>=0){
+			ctx.lineTo(i,ch-25*heightOfFunction-borderCanvas);
+			actArea+=25*heightOfFunction;
+		}
+		else{
+			ctx.lineTo(i,ch-borderCanvas);
+		}
 	}
 	console.log(xfn);
 	ctx.stroke();
-	ctx.fillStyle='rgba(135,206,250, .25)';
+	
 	ctx.lineTo(cw-borderCanvas,ch-borderCanvas);
 	ctx.lineTo(borderCanvas,ch-borderCanvas);
 	ctx.fill();
