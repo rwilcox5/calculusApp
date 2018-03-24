@@ -35,6 +35,11 @@ import { Riemann2Page } from '../pages/riemann2/riemann2';
 import { Riemann3Page } from '../pages/riemann3/riemann3';
 import { Riemann4Page } from '../pages/riemann4/riemann4';
 import { Riemann5Page } from '../pages/riemann5/riemann5';
+import { Derapp1Page } from '../pages/derapp1/derapp1';
+import { Derapp2Page } from '../pages/derapp2/derapp2';
+import { Derapp3Page } from '../pages/derapp3/derapp3';
+import { Derapp4Page } from '../pages/derapp4/derapp4';
+import { Derapp5Page } from '../pages/derapp5/derapp5';
 //New Pages
 
 import { Functions0Page } from '../pages/functions0/functions0';
@@ -99,6 +104,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 	Riemann3Page,
 	Riemann4Page,
 	Riemann5Page,
+	Derapp1Page,
+	Derapp2Page,
+	Derapp3Page,
+	Derapp4Page,
+	Derapp5Page,
 //New Names
 
     MultiChoiceComponent,
@@ -159,6 +169,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 	Riemann3Page,
 	Riemann4Page,
 	Riemann5Page,
+	Derapp1Page,
+	Derapp2Page,
+	Derapp3Page,
+	Derapp4Page,
+	Derapp5Page,
 //New Names
     ListPage
   ],

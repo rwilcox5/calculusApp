@@ -121,12 +121,7 @@ export class MultiChoiceComponent {
 			this_array.splice(randX,1);
 			
 		}
-		if (arrayLen>1){
-			if (rand_array[0]==0 && rand_array[1]==1){
-				rand_array[0]=1;
-				rand_array[1]=0;
-			}
-		}
+
 		return rand_array;
 	}
 

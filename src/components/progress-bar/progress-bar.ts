@@ -14,17 +14,18 @@ export class ProgressBarComponent {
 
   
 
-  @Input()
-  private bWidth: string = '0px';
-  @Input()
-  private tWidth: string = '200px';
-  @Input()
-  private height: string = '15px';
+  @Input() private bWidth: string = '0px';
+  @Input() private tWidth: string = '200px';
+  @Input() private height: string = '15px';
 
 
   constructor() {
     console.log('Hello ProgressBarComponent Component');
     
+  }
+
+  ngAfterViewInit(){
+
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the SpinKnobComponent component.
@@ -17,6 +18,7 @@ export class SpinKnobComponent {
   @Input() private rotateAngle: boolean = true;
   @Input() private showSin: boolean = false;
   @Input() private showCos: boolean = false;
+  @Input() private pointsHere: string = '';
   
   angle: number[] = [0,0];
   nRotations: number = 0;
@@ -43,7 +45,7 @@ export class SpinKnobComponent {
   rotTopC: string = '';
   rotLeftC: string = '';
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private storage: Storage) {
 
     this.angle = [0,1];
     this.angleToTex();
@@ -60,6 +62,12 @@ export class SpinKnobComponent {
       this.fLeft = 'center';
     }
     this.setCAngle([0,0]);
+
+    this.storage.get(this.pointsHere).then((val) => {
+        this.nCorrect = val;
+        this.bWidth = (this.nCorrect*10).toString()+'px';      
+      
+      });
     
 
   }
@@ -84,7 +92,7 @@ export class SpinKnobComponent {
     	if ( (this.angle[0]-this.cAngle[0])%(2*this.angle[1])==0 && this.angle[1]==this.cAngle[1]){
     		this.nCorrect++;
     		this.bWidth = (this.nCorrect*10).toString()+'px';
-        console.log(this.nCorrect);
+        this.storage.set(this.pointsHere, this.nCorrect);
 
     		this.setCAngle(this.cAngle);
 
@@ -94,7 +102,7 @@ export class SpinKnobComponent {
       if (this.angle[0]==this.cAngle[0] && this.angle[1]==this.cAngle[1]){
         this.nCorrect++;
         this.bWidth = (this.nCorrect*10).toString()+'px';
-        console.log(this.nCorrect);
+        this.storage.set(this.pointsHere, this.nCorrect);
 
         this.setCAngle(this.cAngle);
 

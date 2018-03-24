@@ -40,7 +40,7 @@ export class Trig0Page {
 	trig11 = Trig11Page;
 	trig12 = Trig12Page;
 	//New Names
-	levelPoints = {'trig1':'0px','trig2':'0px','trig3':'0px','trig4':'0px','trig5':'0px','trig6':'0px','trig7':'0px','trig8':'0px','trig9':'0px','trig10':'0px','trig11':'0px','trig12':'0px'};
+	levelPoints = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
@@ -52,19 +52,32 @@ export class Trig0Page {
   }
 
   getData() {
-	   this.storage.get('pointsTrig1').then((val) => {
-	    this.levelPoints.trig1 = (val*10).toString()+'px';
-	  });
-	  this.storage.get('pointsTrig2').then((val) => {
-	    this.levelPoints.trig2 = (val*10).toString()+'px';
-	  });
-	  this.storage.get('pointsTrig3').then((val) => {
-	    this.levelPoints.trig3 = (val*10).toString()+'px';
-	  });
-	  this.storage.get('pointsTrig4').then((val) => {
-	    this.levelPoints.trig4 = (val*10).toString()+'px';
-	  });
+  		this.levelPoints = [];
+  		let allGets = [];
+	  	for (var i=0;i<13;i++){
+	  		this.levelPoints.push('0px');
+	  		if (i>0){
+		  		allGets.push(this.storage.get('pointsTrig'+i.toString()));
+		  	}
+	  	}
+	  	
+
+	  	Promise.all(allGets).then(values => {
+	  		for (var i=0;i<12;i++){
+	  			if (values[i]>20){
+	  				values[i]=20;
+	  			}
+	  			this.levelPoints[i+1] = (values[i]*10).toString()+'px';
+	  		}
+	  	});
+
 	  
+	}
+
+	clearData(){
+		for (var i=1;i<13;i++){
+			this.storage.set('pointsTrig'+i.toString(),0);
+		}
 	}
 
 
