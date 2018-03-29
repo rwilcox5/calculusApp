@@ -21,8 +21,8 @@ export class Functions1Page {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
-  	this.canvasSize[0] = this.platform.height()/4-25;
-  	this.canvasSize[1] = this.platform.height()/4-25;
+  	this.canvasSize[0] = Math.min(this.platform.height()/4-25,this.platform.width()/4-25);
+  	this.canvasSize[1] = Math.min(this.platform.height()/4-25,this.platform.width()/4-25);
   	this.canvasSize[2] = 10/this.canvasSize[0];
   	this.canvasSize[3] = 10/this.canvasSize[1];
   	for (var i=0;i<5;i++){
