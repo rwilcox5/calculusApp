@@ -28,7 +28,7 @@ f.write(filedata)
 f.close()
 
 f = open('src/pages/'+str(level)+'0/'+str(level)+'0.html','r')
-filedata = f.read().replace('<!-- New Buttons -->',"<ion-col>\n<button ion-button [navPush]="+name.lower()+">Order Steps</button>\n<br \>\n<progress-bar [bWidth]='levelPoints."+name.lower()+"'></progress-bar>\n</ion-col>\n<!-- New Buttons -->")
+filedata = f.read().replace('<!-- New Buttons -->',"<ion-col>\n<button ion-button [navPush]="+name.lower()+">Order Steps</button>\n<br \>\n<progress-bar [bWidth]='levelPoints["+name[len(level):len(name)]+"]'></progress-bar>\n</ion-col>\n<!-- New Buttons -->")
 f.close()
 
 f = open('src/pages/'+str(level)+'0/'+str(level)+'0.html','w')

@@ -1,5 +1,5 @@
 import { Component,Input } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Trig0Page } from '../../pages/trig0/trig0';
 
@@ -16,6 +16,7 @@ import { Trig0Page } from '../../pages/trig0/trig0';
 export class MatchStuffComponent {
 	@Input() private pointsHere: string = '';
 	@Input() private matchArrayArray: any[]= [];
+	@Input() private canvasSize: number[] = [];
 	catName = Trig0Page;
 
   private cellBG: string[][] = [['black','black','black'],['black','black','black'],['black','black','black']];
@@ -27,10 +28,11 @@ export class MatchStuffComponent {
   private nsize: number = 3;
   private matchArray: any[] = [];
   private bWidth: string;
+  private rHeight: string = '100px';
   private cellID: string[][] = [['ml1','ml2','ml3'],['ml4','ml5','ml6'],['ml7','ml8','ml9']];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-
+  constructor(private platform: Platform, public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
+  	this.rHeight = (this.platform.height()/4).toString()+'px';
 
   }
 
@@ -41,6 +43,7 @@ export class MatchStuffComponent {
 	    this.nCorrect = val;
 	    this.bWidth = (this.nCorrect*10).toString()+'px'; 
 	  });
+
   	
   	
   }
@@ -50,24 +53,26 @@ export class MatchStuffComponent {
   cellClick(rowID,colID){
   		this.cellBG[rowID][colID] = 'yellow';
   		if (this.firstClick[0]>-1){
-			if (this.letters[this.firstClick[0]][this.firstClick[1]][1]==this.letters[rowID][colID][1]){
-				this.cellBG[rowID][colID] = 'green';
-				this.cellBG[this.firstClick[0]][this.firstClick[1]] = 'green';
-				this.matched.push(this.letters[rowID][colID][1]);
-				this.firstClick = [-1,-1];
-				if (this.matched.length==Math.floor(this.matchArray.length/2)){
-					this.nCorrect++;
-					this.bWidth = (this.nCorrect*10).toString()+'px'; 
-					this.storage.set(this.pointsHere, this.nCorrect);	
+  			if (this.firstClick[0]!=rowID || this.firstClick[1]!=colID){
+				if (this.letters[this.firstClick[0]][this.firstClick[1]][1]==this.letters[rowID][colID][1]){
+					this.cellBG[rowID][colID] = 'green';
+					this.cellBG[this.firstClick[0]][this.firstClick[1]] = 'green';
+					this.matched.push(this.letters[rowID][colID][1]);
+					this.firstClick = [-1,-1];
+					if (this.matched.length==Math.floor(this.matchArray.length/2)){
+						this.nCorrect++;
+						this.bWidth = (this.nCorrect*10).toString()+'px'; 
+						this.storage.set(this.pointsHere, this.nCorrect);	
 
-					this.createMArray();
-					this.createMatching();
+						this.createMArray();
+						this.createMatching();
+					}
 				}
-			}
-			else{
-				this.cellBG[rowID][colID] = 'red';
-				this.cellBG[this.firstClick[0]][this.firstClick[1]] = 'red';
-				this.firstClick = [-1,-1];
+				else{
+					this.cellBG[rowID][colID] = 'red';
+					this.cellBG[this.firstClick[0]][this.firstClick[1]] = 'red';
+					this.firstClick = [-1,-1];
+				}
 			}
 		}
 		else{

@@ -1,20 +1,20 @@
 <!-- Generated template for the MatchStuffComponent component -->
 <ion-grid>
-  <ion-row>
+  <ion-row [style.height]='rHeight'>
   	<ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]'></mathjax-latex></button>
+      <button tappable (tap)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
-  <ion-row>
+  <ion-row [style.height]='rHeight'>
     <ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]'></mathjax-latex></button>
+      <button tappable (tap)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 
-  <ion-row>
+  <ion-row [style.height]='rHeight'>
     <ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]'></mathjax-latex></button>
+      <button tappable (tap)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
     </ion-col>
   </ion-row>
 

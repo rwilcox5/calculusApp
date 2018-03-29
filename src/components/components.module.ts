@@ -8,6 +8,8 @@ import { MasterMindComponent } from './master-mind/master-mind';
 import { DoubleSudokuComponent } from './double-sudoku/double-sudoku';
 import { MathjaxLatexComponent } from './mathjax-latex/mathjax-latex';
 import { RiemannCanvasComponent } from './riemann-canvas/riemann-canvas';
+import { OptimizationCanvasComponent } from './optimization-canvas/optimization-canvas';
+import { DrawDerivativesComponent } from './draw-derivatives/draw-derivatives';
 @NgModule({
 	declarations: [MultiChoiceComponent,
     ProgressBarComponent,
@@ -17,7 +19,9 @@ import { RiemannCanvasComponent } from './riemann-canvas/riemann-canvas';
     MasterMindComponent,
     DoubleSudokuComponent,
     MathjaxLatexComponent,
-    RiemannCanvasComponent],
+    RiemannCanvasComponent,
+    OptimizationCanvasComponent,
+    DrawDerivativesComponent],
 	imports: [],
 	exports: [MultiChoiceComponent,
     ProgressBarComponent,
@@ -27,6 +31,8 @@ import { RiemannCanvasComponent } from './riemann-canvas/riemann-canvas';
     MasterMindComponent,
     DoubleSudokuComponent,
     MathjaxLatexComponent,
-    RiemannCanvasComponent]
+    RiemannCanvasComponent,
+    OptimizationCanvasComponent,
+    DrawDerivativesComponent]
 })
 export class ComponentsModule {}

@@ -17,29 +17,44 @@
 
 
 <ion-col>
-<button ion-button [navPush]=derapp1>Local Max</button>
+<button ion-button [navPush]=derappopt0>Optimization</button>
 <br \>
-<progress-bar [bWidth]='levelPoints.derapp1'></progress-bar>
+<progress-bar [bWidth]='levelPoints[0]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=derapp2>Local Min</button>
+<button ion-button [navPush]=derappnewton0>Approximation</button>
 <br \>
-<progress-bar [bWidth]='levelPoints.derapp2'></progress-bar>
+<progress-bar [bWidth]='levelPoints[1]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=derapp3>Velocity</button>
+<button ion-button [navPush]=derapprelated0>Related Rates</button>
 <br \>
-<progress-bar [bWidth]='levelPoints.derapp3'></progress-bar>
+<progress-bar [bWidth]='levelPoints[2]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=derapp4>Optimization</button>
+<button ion-button [navPush]=derappvelocity0>Velocity</button>
 <br \>
-<progress-bar [bWidth]='levelPoints.derapp4'></progress-bar>
+<progress-bar [bWidth]='levelPoints[3]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=derapp5>Related Rates</button>
+<button ion-button [navPush]=derappbiology0>Biology</button>
 <br \>
-<progress-bar [bWidth]='levelPoints.derapp5'></progress-bar>
+<progress-bar [bWidth]='levelPoints[4]'></progress-bar>
+</ion-col>
+<ion-col>
+<button ion-button [navPush]=derappeconomics0>Economics</button>
+<br \>
+<progress-bar [bWidth]='levelPoints[5]'></progress-bar>
+</ion-col>
+<ion-col>
+<button ion-button [navPush]=derappsecond0>Second Derivative</button>
+<br \>
+<progress-bar [bWidth]='levelPoints[6]'></progress-bar>
+</ion-col>
+<ion-col>
+<button ion-button [navPush]=derappfirst0>First Derivative</button>
+<br \>
+<progress-bar [bWidth]='levelPoints[7]'></progress-bar>
 </ion-col>
 <!-- New Buttons -->
 

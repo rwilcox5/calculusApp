@@ -16,8 +16,6 @@ export class RiemannCanvasComponent {
 	@Input() maxRects: number = 1000;
 	@Input() maxError: number[] = [-20,20];
 	private canvas;
-	private offsetX: number = 0;
-	private offsetY: number = 0;
 	private isDrawing: boolean = false;
 	private startX: number = 0;
 	private startY: number = 0;

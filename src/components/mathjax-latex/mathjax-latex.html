@@ -1,3 +1,8 @@
-<span [id]='mlid+"i"' *ngIf='inline'>\${{ equation }}\$</span>
-<span [id]='mlid+"d"' *ngIf='!inline'>\$\${{ equation }}\$\$</span>
+<span *ngIf="!isCanvas">
+	<span [id]='mlid+"i"' *ngIf='inline'>\${{ equation }}\$</span>
+	<span [id]='mlid+"d"' *ngIf='!inline'>\$\${{ equation }}\$\$</span>
+</span>
+<span *ngIf='isCanvas'>
+	<canvas width="50" height="50" #canvas></canvas>
+</span>
 
