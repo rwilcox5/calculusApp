@@ -1,28 +1,37 @@
 <!-- Generated template for the MatchStuffComponent component -->
-<ion-grid>
-  <ion-row [style.height]='rHeight'>
-  	<ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' class="matchButton"><mathjax-latex [equation]='cellValue[0][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+<ion-grid no-padding>
+  <ion-row style="height: 87vh;">
+    <ion-col #matchCol1>
+      <ion-row [style.height]='rHeight' *ngFor='let i of [0,1,2]'>
+      	<ion-col>
+          <button tappable (tap)="cellClick(0,i);" [style.background-color]='cellBG[0][i]' [style.fontSize]='fSize' class="matchButton" no-padding><mathjax-latex [equation]='cellValue[0][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+        </ion-col>
+      </ion-row>
     </ion-col>
-  </ion-row>
-
-  <ion-row [style.height]='rHeight'>
-    <ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+    <ion-col #matchCol2>
+      <ion-row [style.height]='rHeight' *ngFor='let i of [0,1,2]'>
+        <ion-col>
+          <button tappable (tap)="cellClick(1,i);" [style.background-color]='cellBG[1][i]' [style.fontSize]='fSize' class="matchButton"><mathjax-latex [equation]='cellValue[1][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+        </ion-col>
+      </ion-row>
     </ion-col>
-  </ion-row>
-
-  <ion-row [style.height]='rHeight'>
-    <ion-col *ngFor='let i of [0,1,2]'>
-      <button tappable (tap)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+    <ion-col #matchCol3>
+      <ion-row [style.height]='rHeight' *ngFor='let i of [0,1,2]'>
+        <ion-col>
+          <button tappable (tap)="cellClick(2,i);" [style.background-color]='cellBG[2][i]' [style.fontSize]='fSize' class="matchButton"><mathjax-latex [equation]='cellValue[2][i]' [canvasSize]='canvasSize'></mathjax-latex></button>
+        </ion-col>
+      </ion-row>
     </ion-col>
   </ion-row>
 
 
   <ion-row>
-    <progress-bar [bWidth]='bWidth'></progress-bar>
+    <ion-col>
+      <button ion-button navPop>Back to Category</button>
+    </ion-col>
+    <ion-col>
+      <progress-bar [bWidth]='bWidth'></progress-bar>
+    </ion-col>
   </ion-row>
-  <ion-row>
-    <button ion-button navPop>Back to Category</button>
-  </ion-row>
+
 </ion-grid> 

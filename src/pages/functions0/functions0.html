@@ -17,30 +17,35 @@
 
 
 <ion-col>
-<button ion-button [navPush]=functions1>Linear</button>
+<button ion-button [navPush]=functions1 [navParams]='linearParams'>Linear</button>
 <br \>
 <progress-bar [bWidth]='levelPoints[1]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=functions2>Quadratic</button>
+<button ion-button [navPush]=functions1 [navParams]='quadraticParams'>Quadratic</button>
 <br \>
 <progress-bar [bWidth]='levelPoints[2]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=functions3>Logarithmic</button>
+<button ion-button [navPush]=functions1 [navParams]='logParams'>Logarithmic</button>
 <br \>
 <progress-bar [bWidth]='levelPoints[3]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=functions4>Exponential</button>
+<button ion-button [navPush]=functions1 [navParams]='expParams'>Exponential</button>
 <br \>
 <progress-bar [bWidth]='levelPoints[4]'></progress-bar>
 </ion-col>
 <ion-col>
-<button ion-button [navPush]=functions5>Mixed</button>
+<button ion-button [navPush]=functions1 [navParams]='mixedParams'>Mixed</button>
 <br \>
 <progress-bar [bWidth]='levelPoints[5]'></progress-bar>
 </ion-col>
+<!--<ion-col>
+<button ion-button [navPush]=functions2 >Composition</button>
+<br \>
+<progress-bar [bWidth]='levelPoints[6]'></progress-bar>
+</ion-col>-->
 <!-- New Buttons -->
 
 

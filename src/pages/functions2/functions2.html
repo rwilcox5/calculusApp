@@ -4,6 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-content no-padding>
-	<match-stuff pointsHere='pointsFunctions2' [canvasSize]='canvasSize' [matchArrayArray]='matchArrayArray'></match-stuff>
+	<order-stuff [orderedItems]="[['x','x^2','x^2+1','@sin(x^2+1)','@sin^2(x^2+1)'],['x','x^2','x^2+1','@cos(x^2+1)','@cos^2(x^2+1)']]" [orderHeader]='orderHeader' pointsHere='pointsFunctions6'></order-stuff>
 </ion-content>

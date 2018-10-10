@@ -19,6 +19,7 @@ export class OrderStuffComponent {
   	@Input() private orderedItems: string[] = [];
   	@Input() private pointsHere: string = '';
     @Input() private orderHeader: string = '';
+    private usedItems: string[] = [];
 	catName = Trig0Page;
 	items = [];
 	nCorrect = 0;
@@ -30,6 +31,7 @@ export class OrderStuffComponent {
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private platform: Platform) {
 
   	this.maxLine = (this.platform.height()/8).toString()+'px';
+
   	
   }
 
@@ -42,7 +44,7 @@ export class OrderStuffComponent {
 
 	  });
     this.mixEmUp();
-    this.maxLine = (this.platform.height()/(this.orderedItems.length+3)).toString()+'px';
+    this.maxLine = (this.platform.height()/(this.usedItems.length+3)).toString()+'px';
 
 
 
@@ -55,10 +57,16 @@ export class OrderStuffComponent {
 
   mixEmUp(){
   	this.items = [];
-  	let rand_array = this.getRandomArray(this.orderedItems.length);
-  	for (let x = 0; x < this.orderedItems.length; x++) {
-      this.orderedItems[rand_array[x]]=this.orderedItems[rand_array[x]].split("@").join("\\")
-      this.items.push(this.orderedItems[rand_array[x]]);
+    if (this.orderedItems.length>0 && Array.isArray(this.orderedItems[0])){
+      this.usedItems = this.orderedItems;
+    }
+    else{
+      this.usedItems = this.orderedItems;
+    }
+  	let rand_array = this.getRandomArray(this.usedItems.length);
+  	for (let x = 0; x < this.usedItems.length; x++) {
+      this.usedItems[rand_array[x]]=this.usedItems[rand_array[x]].split("@").join("\\");
+      this.items.push(this.usedItems[rand_array[x]]);
     }
     
   }
@@ -70,25 +78,24 @@ export class OrderStuffComponent {
 
     let isOrdered = true;
     if (this.sortType=='smallest to largest'){
-      for (let x = 0; x < this.orderedItems.length; x++) {
-      	if (this.items[x]!=this.orderedItems[x]){
+      for (let x = 0; x < this.usedItems.length; x++) {
+      	if (this.items[x]!=this.usedItems[x]){
       		isOrdered = false;
       	}
       }
     }
     else if (this.sortType=='largest to smallest'){
-      for (let x = 0; x < this.orderedItems.length; x++) {
-        if (this.items[x]!=this.orderedItems[this.orderedItems.length-x-1]){
+      for (let x = 0; x < this.usedItems.length; x++) {
+        if (this.items[x]!=this.usedItems[this.usedItems.length-x-1]){
           isOrdered = false;
         }
       }
     }
     if (isOrdered){
     	this.nCorrect++;
-    	this.bWidth = (this.nCorrect*10).toString()+'px';    	
+    	this.bWidth = (this.nCorrect*10).toString()+'px';
     	this.storage.set(this.pointsHere, this.nCorrect);
     	this.mixEmUp();
-
     }
   }
 

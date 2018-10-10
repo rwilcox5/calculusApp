@@ -37,20 +37,15 @@ export class Functions1Page {
   }
 
   	createMArray(){
-  		let a = (Math.floor(Math.random()*3)+1).toString();
-  		let b = (Math.floor(Math.random()*3)+1).toString();
-  		let c = (Math.floor(Math.random()*3)+1).toString();
-  		let d = (Math.floor(Math.random()*3)+1).toString();
-  		let e = (Math.floor(Math.random()*2)+2).toString();
-  		let f = (Math.floor(Math.random()*2)+1).toString();
-		let allValues = ['y=x+'+a,'y=x-'+b,'y=-x+'+c,'y=-x-'+d,'y='+e+'x+'+f];
-		let allMatchQ = [['canvasx+'+a,'canvasx+'+a],['canvasx-'+b,'canvasx-'+b],['canvas-1*x+'+c,'canvas-1*x+'+c],['canvas-1*x-'+d,'canvas-1*x-'+d],['canvas'+e+'*x+'+f,'canvas'+e+'*x+'+f]];
+  		let allValues = this.navParams.get('firstArray');
+  		let allMatchQ = this.navParams.get('secondArray');
+
 		this.matchArray = [];
 		let notIN = Math.floor(Math.random()*5);
 		for (var i=0;i<5;i++){
 			if (i!=notIN){
 				this.matchArray.push([allValues[i].split("@").join("\\"),i]);
-				this.matchArray.push([allMatchQ[i][Math.floor(Math.random()*2)].split("@").join("\\"),i]);
+				this.matchArray.push([allMatchQ[i].split("@").join("\\"),i]);
 			}
 			else{
 				this.matchArray.push([allValues[i].split("@").join("\\"),i]);

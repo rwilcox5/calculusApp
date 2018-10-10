@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Trig0Page } from '../../pages/trig0/trig0';
@@ -14,6 +14,9 @@ import { Trig0Page } from '../../pages/trig0/trig0';
   templateUrl: 'match-stuff.html'
 })
 export class MatchStuffComponent {
+	@ViewChild('matchCol1') matchCol1: ElementRef;
+	@ViewChild('matchCol2') matchCol2: ElementRef;
+	@ViewChild('matchCol3') matchCol3: ElementRef;
 	@Input() private pointsHere: string = '';
 	@Input() private matchArrayArray: any[]= [];
 	@Input() private canvasSize: number[] = [];
@@ -30,13 +33,16 @@ export class MatchStuffComponent {
   private bWidth: string;
   private rHeight: string = '100px';
   private cellID: string[][] = [['ml1','ml2','ml3'],['ml4','ml5','ml6'],['ml7','ml8','ml9']];
-
+  private fSize: string = '1.5em';
   constructor(private platform: Platform, public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
-  	this.rHeight = (this.platform.height()/4).toString()+'px';
+  	this.rHeight = (this.platform.height()*.26).toString()+'px';
 
   }
 
   ngAfterViewInit(){
+  	if (this.matchCol1.nativeElement.offsetWidth>this.platform.width()/3 || this.matchCol2.nativeElement.offsetWidth>this.platform.width()/3 || this.matchCol3.nativeElement.offsetWidth>this.platform.width()/3){
+  		this.fSize = "1em";
+  	}
   	this.matchArray = this.matchArrayArray[0];
   	this.createMatching();
   	this.storage.get(this.pointsHere).then((val) => {

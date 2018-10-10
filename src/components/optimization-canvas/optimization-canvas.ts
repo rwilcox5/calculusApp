@@ -22,6 +22,7 @@ export class OptimizationCanvasComponent {
 	private mouseY: number = 0;
 	private currentBox: number[][] = [];
 	private stretch;
+	private outstretch: boolean = false;
 	private startBox1;
 	private startBox2;
 	private startBox3;
@@ -36,7 +37,12 @@ export class OptimizationCanvasComponent {
     console.log('Hello OptimizationCanvasComponent Component');
     
   }
+  ngAfterViewChecked(){
+  	if (this.optType=='fence'){
+		drawFence(this.ctx,this.canvas,this.currentBox,100,200);
+	}
 
+  }
   ngAfterViewInit(){
   	
   	this.canvas = this.canvasEl.nativeElement;
@@ -56,13 +62,15 @@ export class OptimizationCanvasComponent {
 		drawCone(this.ctx,this.canvas,this.currentBox,200,300);
 	}
 	else if (this.optType=='fence'){
-		this.currentBox = [[25,50]];
-		drawFence(this.ctx,this.canvas,this.currentBox,200,200);
+		this.currentBox = [[96,192]];
+		drawFence(this.ctx,this.canvas,this.currentBox,100,200);
 	}
 	else if (this.optType=='fold'){
-		this.canvas.width = 800;
-		this.currentBox = [[150,150],[175,175]];
-		drawFold(this.ctx,this.canvas,this.currentBox,200,200,450,350);
+		this.canvas.width = 900;
+		
+		this.currentBox = [[150,200],[170,220]];
+		this.volume = this.currentBox[0][0]*this.currentBox[0][1]*(this.currentBox[1][1]-this.currentBox[0][1])/2;
+		drawFold(this.ctx,this.canvas,this.currentBox,200,200,450,300);
 	}
   }
 
@@ -154,10 +162,20 @@ export class OptimizationCanvasComponent {
 	moveBox(){
 		if (this.stretch=='front'){  //Changes width of box
 			let maxDiff = Math.max(this.startX-this.mouseX,this.mouseY-this.startY);
+			let oldWidth = Math.pow(this.startBox5*this.startBox5+this.startBox6*this.startBox6,.5);
+
 			this.currentBox[0][0]= this.startBox1-maxDiff;
 			this.currentBox[0][1]= this.startBox2+maxDiff;
 			this.currentBox[2][0]= this.startBox5+maxDiff;
 			this.currentBox[2][1]= this.startBox6-maxDiff;
+
+			let wlDiff = wtol(maxDiff);
+			this.currentBox[1][0]= this.startBox3+wlDiff;
+			
+
+			let whDiff = wtoh(maxDiff,oldWidth,this.startBox4);
+			this.currentBox[0][1]= this.startBox2+whDiff;
+			this.currentBox[1][1]= this.startBox4-whDiff;
 		}
 		if (this.stretch=='side'){ //Changes length of box
 			let maxDiff = this.mouseX-this.startX;
@@ -175,8 +193,22 @@ export class OptimizationCanvasComponent {
 		}
 		if (this.stretch=='top'){ //Changes height of box
 			let maxDiff = this.mouseY-this.startY;
+			let oldHeight = this.startBox4;
+			let oldLength = this.startBox3;
+			let newHeight = this.startBox4-maxDiff;
+			let oldWidth = Math.pow(this.startBox5*this.startBox5+this.startBox6*this.startBox6,.5);
+
 			this.currentBox[0][1]= this.startBox2+maxDiff;
 			this.currentBox[1][1]= this.startBox4-maxDiff;
+
+			let hwDiff = htow(oldHeight,newHeight,oldWidth);
+			this.currentBox[0][0]= this.startBox1-hwDiff;
+			this.currentBox[0][1]= this.startBox2+hwDiff;
+			this.currentBox[2][0]= this.startBox5+hwDiff;
+			this.currentBox[2][1]= this.startBox6-hwDiff;
+
+			let hlDiff = htol(oldHeight,newHeight,oldLength);
+			this.currentBox[1][0]= this.startBox3+hlDiff;
 		}
 				
 		drawBox(this.ctx,this.canvas,this.currentBox);	
@@ -217,24 +249,26 @@ export class OptimizationCanvasComponent {
 	}
 
 	moveFence(){
-		if (this.stretch=='top'){  //Changes width of box
+		if (this.stretch=='top'){  
 			let maxDiff = this.mouseY-this.startY;
-			this.currentBox[0][1]= this.startBox2-maxDiff;
+			this.currentBox[0][1]= this.startBox2-maxDiff*2;
+
+			this.currentBox[0][0]= this.startBox1+maxDiff;
 		}
-		else if (this.stretch=='right'){ //Changes length of box
+		else if (this.stretch=='right'){ 
 			let maxDiff = this.mouseX-this.startX;
 			this.currentBox[0][0]= this.startBox1+maxDiff;
+
+			this.currentBox[0][1]= this.startBox2-maxDiff*2;
 		}
-		else if (this.stretch=='left'){ //Changes height of box
-			let maxDiff = this.startX-this.mouseX;
+		else if (this.stretch=='bottom'){ 
+			let maxDiff = this.startY-this.mouseY;
+			this.currentBox[0][1]= this.startBox2-maxDiff*2;
+
 			this.currentBox[0][0]= this.startBox1+maxDiff;
 		}
-		else if (this.stretch=='bottom'){ //Changes height of box
-			let maxDiff = this.startY-this.mouseY;
-			this.currentBox[0][1]= this.startBox2-maxDiff;
-		}
 				
-		drawFence(this.ctx,this.canvas,this.currentBox,200,200);	
+		drawFence(this.ctx,this.canvas,this.currentBox,100,200);	
 	}
 
 	moveFold(){
@@ -262,29 +296,29 @@ export class OptimizationCanvasComponent {
 			this.currentBox[0][0]= this.startBox1-maxDiff;
 			//this.currentBox[1][1]= this.startBox4-maxDiff;
 		}
-		else if (this.stretch=='topo'){  //Changes width of box
+		else if (this.stretch=='topo' && this.outstretch){  //Changes width of box
 			let maxDiff = this.mouseY-this.startY;
 			this.currentBox[1][1]= this.startBox4-maxDiff;
 			this.currentBox[0][1]= this.startBox2-maxDiff;
 
 		}
-		else if (this.stretch=='righto'){ //Changes length of box
+		else if (this.stretch=='righto' && this.outstretch){ //Changes length of box
 			let maxDiff = this.mouseX-this.startX;
 			this.currentBox[1][0]= this.startBox3+maxDiff;
 			this.currentBox[0][0]= this.startBox1+maxDiff;
 		}
-		else if (this.stretch=='lefto'){ //Changes height of box
+		else if (this.stretch=='lefto' && this.outstretch){ //Changes height of box
 			let maxDiff = this.startX-this.mouseX;
 			this.currentBox[1][0]= this.startBox3+maxDiff;
 			this.currentBox[0][0]= this.startBox1+maxDiff;
 		}
-		else if (this.stretch=='bottomo'){ //Changes height of box
+		else if (this.stretch=='bottomo' && this.outstretch){ //Changes height of box
 			let maxDiff = this.startY-this.mouseY;
 			this.currentBox[1][1]= this.startBox4-maxDiff;
 			this.currentBox[0][1]= this.startBox2-maxDiff;
 		}
 		this.volume = this.currentBox[0][0]*this.currentBox[0][1]*(this.currentBox[1][1]-this.currentBox[0][1])/2;
-		drawFold(this.ctx,this.canvas,this.currentBox,200,200,450,350);	
+		drawFold(this.ctx,this.canvas,this.currentBox,200,200,450,300);	
 	}
 
 	startBox(){
@@ -368,7 +402,7 @@ export class OptimizationCanvasComponent {
 		}
 	}
 	startFence(){
-		let pof = partOfFence([this.startX,this.startY],200,200,this.currentBox[0][0],this.currentBox[0][1]);
+		let pof = partOfFence([this.startX,this.startY],100,200,this.currentBox[0][0],this.currentBox[0][1]);
 		if (pof[0]){
 			this.stretch = pof[1];
 			this.isDrawing = true;
@@ -410,6 +444,32 @@ function ltoh(length,startBox3,startBox4){
 	return -1*diffHeight;
 }
 
+function wtol(width){
+	let lwConstraint = .7;
+	return width/lwConstraint*Math.pow(2,.5);
+}
+function wtoh(width,oldWidth,startBox4){
+	let newWidth = oldWidth+width*Math.pow(2,.5);
+	let volume = 87500;
+	let trueHeight = volume/(newWidth)/wtol(newWidth)*Math.pow(2,.5);
+	let oldHeight = startBox4;
+	let diffHeight = trueHeight-oldHeight;
+	return -1*diffHeight;
+}
+
+function htol(oldHeight,newHeight,oldLength){
+	let lwConstraint = .7;
+	let volume = 87500;
+	let newLength = Math.pow(volume/newHeight/lwConstraint,.5);
+	return newLength-oldLength;
+}
+function htow(oldHeight,newHeight,oldWidth){
+	let lwConstraint = .7;
+	let volume = 87500;
+	let newLength = Math.pow(volume/newHeight/lwConstraint,.5);
+	let newWidth = newLength*lwConstraint;
+	return (newWidth-oldWidth)/Math.pow(2,.5);
+}
 function isFront(xy,currentBox){
 	if (xy[0]>currentBox[0][0] && xy[0]<currentBox[0][0]+currentBox[1][0] && xy[1]>currentBox[0][1] && xy[1]<currentBox[0][1]+currentBox[1][1]){
 		return true;
@@ -498,11 +558,11 @@ function isLeftCone(xy,cxbot,cybot,r,h){
 
 function partOfFence(xy,cxbot,cybot,l,w){
 
-	if (xy[1]<cybot+w/2+20 && xy[1]>cybot-w/2-20 && xy[0]<cxbot+l/2+20 && xy[0]>cxbot-l/2-20){
+	if (xy[1]<cybot+w/2+20 && xy[1]>cybot-w/2-20 && xy[0]<cxbot+l+20 && xy[0]>cxbot-20){
 		let dToTop = Math.abs(xy[1]-(cybot-w/2));
 		let dToBot = Math.abs(cybot+w/2-xy[1]);
-		let dToLeft = Math.abs(xy[0]-(cxbot-l/2));
-		let dToRight = Math.abs(cxbot+l/2-xy[0]);
+		let dToLeft = Math.abs(xy[0]-(cxbot));
+		let dToRight = Math.abs(cxbot+l-xy[0]);
 
 		if (dToTop<dToBot && dToTop<dToLeft && dToTop<dToRight){
 			return [true,'top'];
@@ -588,7 +648,7 @@ function drawBox(ctx,canvas,pointsRaw){
 	ctx.lineTo(points5[0][0],points5[0][1]);
 	ctx.stroke();
 	ctx.font="italic 12pt Calibri";
-	ctx.fillText("l="+(points5[2][0]-points5[3][0]).toFixed(0),(points5[2][0]+points5[3][0])/2-5,points5[2][1]+16);
+	ctx.fillText("l="+(points5[2][0]-points5[3][0]).toFixed(0),(points5[2][0]+points5[3][0])/2-10,points5[2][1]+16);
 
 	ctx.beginPath();
 	ctx.moveTo(points5[0][0],points5[0][1]);
@@ -613,7 +673,7 @@ function drawBox(ctx,canvas,pointsRaw){
 	ctx.fillText("h="+(points5[2][1]-points5[1][1]).toFixed(0),points5[1][0]+points5[4][0]+5,(points5[1][1]+pointsRaw[2][1]+points5[2][1]+pointsRaw[2][1])/2);
 
 	ctx.fillText("v="+(boxDimensions[0]*boxDimensions[1]*boxDimensions[2]).toString(),0,16);
-	ctx.fillText("c="+(boxDimensions[0]*boxDimensions[1]*boxDimensions[2]).toString(),0,32);
+	ctx.fillText("c="+(4*(boxDimensions[0]+boxDimensions[1]+boxDimensions[2])).toString(),0,32);
 
 }
 
@@ -697,16 +757,34 @@ function drawFence(ctx,canvas,pointsRaw,cbx,cby){
 
 	let l = pointsRaw[0][0];
 	let w = pointsRaw[0][1];
+	var img = new Image();   // Create new img element
+	img.src = 'assets/imgs/sea.png';
 
+	for (var i=0;i<canvas.height/55;i++){
+	    ctx.drawImage(img,cbx-38,0+55*i);
+    }
+
+
+	var img2 = new Image();   // Create new img element
+	img2.src = 'assets/imgs/hen.png';
+	for (var i=0;i<l/24;i++){
+		for (var ii=0;ii<w/24;ii++){
+	    	ctx.drawImage(img2,cbx+24*i,cby-w/2+24*ii);
+	    }
+    }
 
 	ctx.beginPath();
-	ctx.moveTo(cbx+l/2,cby+w/2);
-	ctx.lineTo(cbx+l/2,cby-w/2);
-	ctx.lineTo(cbx-l/2,cby-w/2);
-	ctx.lineTo(cbx-l/2,cby+w/2);
-	ctx.lineTo(cbx+l/2,cby+w/2);
+	ctx.moveTo(cbx+l,cby+w/2);
+	ctx.lineTo(cbx+l,cby-w/2);
+	ctx.lineTo(cbx-5,cby-w/2);
+	ctx.moveTo(cbx-5,cby+w/2);
+	ctx.lineTo(cbx+l,cby+w/2);
 	ctx.stroke();
 	ctx.closePath();
+	ctx.fillStyle="#FFFFFF";
+	ctx.fillRect(cbx+l+1,cby-w/2,24,w+24);
+	ctx.fillRect(cbx,cby+w/2+1,l+24,24);
+	ctx.fillStyle="#000000";
 
 
 
@@ -776,7 +854,7 @@ function drawFold(ctx,canvas,pointsRaw,cbx,cby,cbxx,cbyy){
 
 	ctx.fillText("w="+Math.pow(pointsRaw[2][0]*pointsRaw[2][0]+pointsRaw[2][1]*pointsRaw[2][1],.5).toFixed(0),(points5[1][0]+points5[1][0]+points5[4][0])/2-5,(points5[2][1]+points5[2][1]+pointsRaw[2][1])/2+16);
 	ctx.fillText("h="+(points5[2][1]-points5[1][1]).toFixed(0),points5[1][0]+points5[4][0]+5,(points5[1][1]+pointsRaw[2][1]+points5[2][1]+pointsRaw[2][1])/2);
-	ctx.fillText("l="+(points5[2][0]-points5[3][0]-25).toFixed(0),(points5[2][0]+points5[3][0])/2-5,points5[2][1]+16);
+	ctx.fillText("l="+(points5[2][0]-points5[3][0]).toFixed(0),(points5[2][0]+points5[3][0])/2-5,points5[2][1]+16);
 
 
 	let backtopleft = [points5[0][0]+points5[4][0],points5[0][1]+points5[4][1]];
